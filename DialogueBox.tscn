@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b7gkw0jwt6e6l"]
 
 [ext_resource type="Script" path="res://DialogueBox.gd" id="1_24hec"]
-[ext_resource type="Texture2D" uid="uid://5aru5rtrnflp" path="res://assets/debugSprite.png" id="2_fbvr0"]
+[ext_resource type="Texture2D" uid="uid://nxmjv2ff0pon" path="res://assets/debugSprite.png" id="2_fbvr0"]
 
 [node name="Polygon2D" type="Polygon2D"]
 position = Vector2(0, 64.0001)
