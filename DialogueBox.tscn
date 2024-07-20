@@ -3,49 +3,53 @@
 [ext_resource type="Script" path="res://DialogueBox.gd" id="1_24hec"]
 [ext_resource type="Texture2D" uid="uid://nxmjv2ff0pon" path="res://assets/debugSprite.png" id="2_fbvr0"]
 
-[node name="Polygon2D" type="Polygon2D"]
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_24hec")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
 position = Vector2(0, 64.0001)
 scale = Vector2(1.16667, 1.125)
 color = Color(0.180005, 0.180005, 0.180005, 1)
 polygon = PackedVector2Array(16, 384, 16, 512, 495.491, 512, 976, 512, 976, 446, 976, 384, 493.713, 384)
-script = ExtResource("1_24hec")
 
 [node name="ScrollTimer" type="Timer" parent="."]
 wait_time = 0.1
 autostart = true
 
 [node name="ContentText" type="RichTextLabel" parent="."]
-offset_left = 41.1427
-offset_top = 412.444
-offset_right = 946.143
-offset_bottom = 476.444
+offset_left = 48.0
+offset_top = 528.0
+offset_right = 953.0
+offset_bottom = 592.0
 
 [node name="Nameplate" type="Polygon2D" parent="."]
 visible = false
-position = Vector2(0, -14.2223)
+position = Vector2(0, 48)
+scale = Vector2(1.16667, 1.125)
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(54.857, 355.556, 54.857, 412.445, 219.428, 412.445, 219.428, 355.556)
 
 [node name="NameLabel" type="RichTextLabel" parent="."]
 visible = false
-offset_left = 68.5712
-offset_top = 355.556
-offset_right = 205.571
-offset_bottom = 387.556
+offset_left = 80.0
+offset_top = 464.001
+offset_right = 217.0
+offset_bottom = 496.001
 bbcode_enabled = true
 
 [node name="SpriteR" type="Sprite2D" parent="."]
 visible = false
 show_behind_parent = true
-position = Vector2(850.283, 312.889)
-scale = Vector2(0.17632, 0.17632)
+position = Vector2(992, 416)
+scale = Vector2(0.205707, 0.19836)
 texture = ExtResource("2_fbvr0")
 
 [node name="SpriteL" type="Sprite2D" parent="."]
 visible = false
 show_behind_parent = true
-position = Vector2(164.571, 312.889)
-scale = Vector2(0.17632, 0.17632)
+position = Vector2(192, 416)
+scale = Vector2(0.205707, 0.19836)
 texture = ExtResource("2_fbvr0")
 
+[connection signal="timeout" from="ScrollTimer" to="Polygon2D" method="_on_scroll_timer_timeout"]
 [connection signal="timeout" from="ScrollTimer" to="." method="_on_scroll_timer_timeout"]

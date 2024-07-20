@@ -1,13 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://3bayiw0gqpvu"]
 
-[ext_resource type="Texture2D" uid="uid://nxmjv2ff0pon" path="res://assets/debugSprite.png" id="1_5y3i2"]
 [ext_resource type="Script" path="res://Player.gd" id="1_k11tk"]
+[ext_resource type="Texture2D" uid="uid://6fwgxlhsivpn" path="res://assets/noirsong_concept.png" id="3_p7vlx"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x1r07"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_5y3i2")
+"texture": ExtResource("3_p7vlx")
 }],
 "loop": true,
 "name": &"test",
@@ -15,17 +15,29 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_46afe"]
-size = Vector2(64, 107)
+size = Vector2(67, 58)
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_k11tk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(64, 64)
+position = Vector2(64, 48)
 scale = Vector2(0.0476361, 0.0476361)
 sprite_frames = SubResource("SpriteFrames_x1r07")
 animation = &"test"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(64, 64.5)
+position = Vector2(68.5, 68)
 shape = SubResource("RectangleShape2D_46afe")
+
+[node name="PlayerCamera" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+
+[node name="DashTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]

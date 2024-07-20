@@ -1,4 +1,4 @@
-extends Polygon2D
+extends CanvasLayer
 #This script is used to define all of the logic of a DialogueBox, children logic should probably be stored here
 var dialogue = ["TEXT ERROR"]
 var page = 0

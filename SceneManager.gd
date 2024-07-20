@@ -11,10 +11,32 @@ func _deferred_clear_dialogue():
 	# Immediately free the current scene,
 	# there is no risk here.
 	dialogue_scene.free()
+	
+func move_zone(from_name,entry_point=0):
+	var path = get_node("/root/MapTables").get_map_dest(from_name, entry_point)
+	call_deferred("_deferred_move_zone", path[0], path[1])
+	
+func _deferred_move_zone(path,exit_point):
+	current_scene.free()
+
+	# Instance the new scene.
+	current_scene = load(path).instantiate()
+	var ch = current_scene.get_entry_choords(exit_point)
+	
+	var root = get_tree().get_root()
+	var scene = root.get_node("Main")
+	var player = scene.get_node("Player")
+	scene.remove_child(player)
+	scene.add_child(current_scene)
+	player.set_choords(ch)
+	scene.add_child(player)
+	
+	get_tree().set_current_scene(scene)
+
+	
 func create_dialogue(dialogue,speaker_name=null,sprite=null,sprite_position=null):
 	# Load new scene.
 	dialogue_scene = preload("res://DialogueBox.tscn").instantiate()
-
 	# Instance the new scene.
 	#dialogue_scene = s.instance()
 	dialogue_scene.newDialogue(dialogue,speaker_name,sprite,sprite_position)
@@ -43,10 +65,10 @@ func _deferred_goto_scene(path):
 	current_scene.free()
 
 	# Load new scene.
-	var s = ResourceLoader.load(path)
+	var s = load(path).instantiate()
 
 	# Instance the new scene.
-	current_scene = s.instance()
+	current_scene = s
 
 	# Add it to the active scene, as child of root.
 	get_tree().get_root().add_child(current_scene)
