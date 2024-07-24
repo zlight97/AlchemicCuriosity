@@ -14,3 +14,4 @@ script = ExtResource("3_kqcl2")
 [node name="BigDebugWorld" parent="." instance=ExtResource("5_ve13f")]
 
 [node name="Player" parent="." instance=ExtResource("4_p80hi")]
+z_index = 1

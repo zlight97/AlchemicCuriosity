@@ -1,16 +1,124 @@
-[gd_scene load_steps=5 format=3 uid="uid://3bayiw0gqpvu"]
+[gd_scene load_steps=17 format=3 uid="uid://3bayiw0gqpvu"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_k11tk"]
-[ext_resource type="Texture2D" uid="uid://6fwgxlhsivpn" path="res://assets/noirsong_concept.png" id="3_p7vlx"]
+[ext_resource type="Texture2D" uid="uid://bchjxafki48c" path="res://assets/noirsong_spritesheet.png" id="2_scjdg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0s6qk"]
+atlas = ExtResource("2_scjdg")
+region = Rect2(88, 0, 347, 424)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cg1cj"]
+atlas = ExtResource("2_scjdg")
+region = Rect2(88, 424, 347, 424)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qbl8o"]
+atlas = ExtResource("2_scjdg")
+region = Rect2(88, 848, 347, 424)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7qibp"]
+atlas = ExtResource("2_scjdg")
+region = Rect2(939, 424, 294, 424)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8kqgk"]
+atlas = ExtResource("2_scjdg")
+region = Rect2(939, 0, 294, 424)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14lrh"]
+atlas = ExtResource("2_scjdg")
+region = Rect2(939, 848, 294, 424)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xi36v"]
+atlas = ExtResource("2_scjdg")
+region = Rect2(582, 0, 346, 424)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_05dlf"]
+atlas = ExtResource("2_scjdg")
+region = Rect2(582, 424, 346, 424)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2u1y4"]
+atlas = ExtResource("2_scjdg")
+region = Rect2(582, 848, 346, 424)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18seb"]
+atlas = ExtResource("2_scjdg")
+region = Rect2(1251, 0, 294, 424)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kqoh0"]
+atlas = ExtResource("2_scjdg")
+region = Rect2(1251, 424, 294, 424)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ep2a"]
+atlas = ExtResource("2_scjdg")
+region = Rect2(1251, 848, 294, 424)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x1r07"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_p7vlx")
+"texture": SubResource("AtlasTexture_0s6qk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cg1cj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qbl8o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cg1cj")
 }],
 "loop": true,
-"name": &"test",
+"name": &"move0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7qibp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8kqgk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7qibp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_14lrh")
+}],
+"loop": true,
+"name": &"move1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xi36v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_05dlf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2u1y4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_05dlf")
+}],
+"loop": true,
+"name": &"move2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_18seb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kqoh0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ep2a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kqoh0")
+}],
+"loop": true,
+"name": &"move3",
 "speed": 5.0
 }]
 
@@ -21,17 +129,18 @@ size = Vector2(67, 58)
 script = ExtResource("1_k11tk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(64, 48)
-scale = Vector2(0.0476361, 0.0476361)
+position = Vector2(4.76837e-07, 6)
+scale = Vector2(0.16474, 0.16474)
 sprite_frames = SubResource("SpriteFrames_x1r07")
-animation = &"test"
+animation = &"move0"
+frame_progress = 0.00619829
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(68.5, 68)
+position = Vector2(0.279366, 12.7794)
 shape = SubResource("RectangleShape2D_46afe")
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
-position_smoothing_enabled = true
+position = Vector2(-0.220634, -0.220634)
 position_smoothing_speed = 10.0
 drag_horizontal_enabled = true
 drag_vertical_enabled = true

@@ -29,6 +29,7 @@ func _deferred_move_zone(path,exit_point):
 	scene.remove_child(player)
 	scene.add_child(current_scene)
 	player.set_choords(ch)
+	player.set_camera_bounds(get_node("/root/MapTables").cameraBounds[current_scene.name])
 	scene.add_child(player)
 	
 	get_tree().set_current_scene(scene)
