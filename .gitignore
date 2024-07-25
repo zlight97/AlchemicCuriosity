@@ -16,3 +16,4 @@ mono_crash.*.json
 
 *.tmp
 *.import
+assets/raw/*
