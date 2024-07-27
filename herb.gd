@@ -6,16 +6,19 @@ var picked = false
 func setHerbType(infoTable):
 	var maxWeight = infoTable[-2]
 	var val = randi()%maxWeight
-	print(val)
 	for i in range(len(infoTable)):
-		print(infoTable[i])
 		if i%2 == 1 and infoTable[i-1]>val:
 			herbType = infoTable[i]
 			return
 			 
 func setSprite():
-	var sprites = get_node("/root/HerbTables").spriteChart[herbType]
-	$Sprite2D.texture = load(sprites[randi()%len(sprites)])
+	var spriteChart = get_node("/root/HerbTables").spriteChart
+	if herbType in spriteChart:
+		var sprites = spriteChart[herbType]
+		$Sprite2D.texture = load(sprites[randi()%len(sprites)])
+	else:
+		picked = true
+		hide()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
