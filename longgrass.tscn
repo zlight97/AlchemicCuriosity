@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cox0tiftggtrd"]
+[gd_scene load_steps=7 format=3 uid="uid://cox0tiftggtrd"]
 
 [ext_resource type="TileSet" uid="uid://o02j820f730r" path="res://grass_tiles.tres" id="1_2ppjo"]
 [ext_resource type="Script" path="res://world.gd" id="2_a24ly"]
+[ext_resource type="PackedScene" uid="uid://c6fjjk1a1xtv4" path="res://herb.tscn" id="3_yabbx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aohe4"]
 size = Vector2(200, 200)
@@ -53,6 +54,5 @@ shape = SubResource("RectangleShape2D_chqhv")
 [node name="EntryNode2" type="Node2D" parent="."]
 position = Vector2(3400, 600)
 
-[connection signal="body_entered" from="Area2D0" to="." method="_on_area_2d_body_entered" binds= [0]]
-[connection signal="body_entered" from="Area2D1" to="." method="_on_area_2d_body_entered" binds= [1]]
-[connection signal="body_entered" from="Area2D2" to="." method="_on_area_2d_body_entered" binds= [2]]
+[node name="herb0" parent="." instance=ExtResource("3_yabbx")]
+position = Vector2(600, 700)

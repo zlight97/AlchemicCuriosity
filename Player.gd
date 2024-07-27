@@ -3,6 +3,13 @@ extends CharacterBody2D
 
 const START_SPEED = 300.0
 const DASH_COOLDOWN = 2.0
+
+var ingredients = {
+	"lavender":0,
+	"test":0
+}
+var herbArea = null
+var herbAreaId = null
 var speed = START_SPEED
 var canDash = true
 var dash_cd = DASH_COOLDOWN
@@ -22,12 +29,21 @@ func process_input():
 			canDash = false
 			$"DashTimer".wait_time = dash_cd
 			$"DashTimer".start()
+			
+	if Input.is_action_just_pressed("use"):
+		gatherHerb()
+
+func gatherHerb():
+	if herbArea:
+			ingredients[herbArea] += 1
+			herbArea = null
+			get_node("/root/SceneManager").current_scene.removeHerb(herbAreaId)
+			herbAreaId = null
 
 func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	process_input()
-
 	move_and_slide()
 	if velocity.x < 0:
 		$AnimatedSprite2D.animation = "move2"

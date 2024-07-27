@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://ce0pd508mtjua"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_f4c5a"]
-[ext_resource type="PackedScene" uid="uid://cox0tiftggtrd" path="res://longgrass.tscn" id="3_2kbrf"]
 [ext_resource type="Script" path="res://TestNode.gd" id="3_kqcl2"]
 [ext_resource type="PackedScene" uid="uid://3bayiw0gqpvu" path="res://Player.tscn" id="4_p80hi"]
+[ext_resource type="PackedScene" uid="uid://ba654fdg6iayl" path="res://big_debug_world.tscn" id="4_vxf20"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_f4c5a")
@@ -11,6 +11,6 @@ script = ExtResource("1_f4c5a")
 [node name="TestNode" type="Node" parent="."]
 script = ExtResource("3_kqcl2")
 
-[node name="longgrass" parent="." instance=ExtResource("3_2kbrf")]
-
 [node name="Player" parent="." instance=ExtResource("4_p80hi")]
+
+[node name="BigDebugWorld" parent="." instance=ExtResource("4_vxf20")]
