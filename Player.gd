@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+signal throw_potion
 
 const START_SPEED = 300.0
 const DASH_COOLDOWN = 2.0
@@ -9,11 +10,11 @@ var ingredients = {
 	"test":0
 }
 var herbArea = null
-var herbAreaId = null
 var speed = START_SPEED
 var canDash = true
 var dash_cd = DASH_COOLDOWN
 var transporting = false
+var can_throw = true
 
 func _ready():
 	transporting = false
@@ -32,13 +33,21 @@ func process_input():
 			
 	if Input.is_action_just_pressed("use"):
 		gatherHerb()
+	
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and can_throw:
+		var dest = get_global_mouse_position()
+		throw_potion.emit(position, dest, velocity)
+		can_throw = false
+		$ThrowTimer.start()
 
 func gatherHerb():
 	if herbArea:
-			ingredients[herbArea] += 1
-			herbArea = null
-			get_node("/root/SceneManager").current_scene.removeHerb(herbAreaId)
-			herbAreaId = null
+		if herbArea.herbType in ingredients:
+			ingredients[herbArea.herbType] += 1
+		else:
+			ingredients[herbArea.herbType] = 1
+		herbArea.pick()
+		herbArea = null
 
 func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
@@ -82,3 +91,7 @@ func set_camera_bounds(charr):
 	$"PlayerCamera".limit_right = charr[2]
 	$"PlayerCamera".limit_bottom = charr[3]
 	
+
+
+func _on_throw_timer_timeout():
+	can_throw = true

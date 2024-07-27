@@ -1,0 +1,79 @@
+[gd_scene load_steps=15 format=3 uid="uid://cjoo2x5eh6k1u"]
+
+[ext_resource type="Texture2D" uid="uid://banr25gn0k6wi" path="res://assets/images/potion/potion0.png" id="1_5koli"]
+[ext_resource type="Script" path="res://thrown_potion.gd" id="1_w8hqs"]
+[ext_resource type="Texture2D" uid="uid://vf6bkeb0h3xl" path="res://assets/images/potion/potion1.png" id="2_v6i2e"]
+[ext_resource type="Texture2D" uid="uid://cj0l4gaaqnyvj" path="res://assets/images/potion/potion2.png" id="3_mvssu"]
+[ext_resource type="Texture2D" uid="uid://dcuugja68qwd3" path="res://assets/images/potion/potion3.png" id="4_eq7jx"]
+[ext_resource type="Texture2D" uid="uid://d1nxoh4yoqke0" path="res://assets/images/potion/potion4.png" id="5_ob2ct"]
+[ext_resource type="Texture2D" uid="uid://7bem5wqxm448" path="res://assets/images/potion/potion5.png" id="6_ijfwm"]
+[ext_resource type="Texture2D" uid="uid://djxtg6mg3vp3q" path="res://assets/images/potion/potion6.png" id="7_uvwug"]
+[ext_resource type="Texture2D" uid="uid://cgu34j0oiy5qy" path="res://assets/images/potion/potion7.png" id="8_ff234"]
+[ext_resource type="Texture2D" uid="uid://cfkn0f1oa05md" path="res://assets/images/potion/potion8.png" id="9_5hjp6"]
+[ext_resource type="Texture2D" uid="uid://cftvbuqh8edh5" path="res://assets/images/potion/potion9.png" id="10_1rj7a"]
+[ext_resource type="Texture2D" uid="uid://cib8neo6g5xyw" path="res://assets/images/potion/potion10.png" id="11_wrwlf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hgrkt"]
+radius = 42.19
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eu4cx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_ff234")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_5hjp6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_1rj7a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_wrwlf")
+}],
+"loop": false,
+"name": &"break",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_5koli")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_v6i2e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_mvssu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_eq7jx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ob2ct")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ijfwm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_uvwug")
+}],
+"loop": false,
+"name": &"thrown",
+"speed": 5.0
+}]
+
+[node name="Area2D" type="Area2D"]
+z_index = 3
+script = ExtResource("1_w8hqs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_hgrkt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_eu4cx")
+animation = &"thrown"
+frame = 6
+frame_progress = 1.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

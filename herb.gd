@@ -3,6 +3,11 @@ extends Area2D
 var herbType = null
 var picked = false
 
+func pick():
+	picked = true
+	hide()
+	queue_free()
+
 func setHerbType(infoTable):
 	var maxWeight = infoTable[-2]
 	var val = randi()%maxWeight
@@ -17,8 +22,7 @@ func setSprite():
 		var sprites = spriteChart[herbType]
 		$Sprite2D.texture = load(sprites[randi()%len(sprites)])
 	else:
-		picked = true
-		hide()
+		pick()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -33,13 +37,11 @@ func _process(delta):
 	pass
 
 
-func _on_body_entered(body, n):
+func _on_body_entered(body):
 	if !picked and body.name == "Player":
-		body.herbArea = herbType
-		body.herbAreaId = n
+		body.herbArea = self
 
 
 func _on_body_exited(body):
 	if !picked and body.name == "Player":
 		body.herbArea = null
-		body.herbAreaId = null

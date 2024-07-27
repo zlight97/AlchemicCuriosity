@@ -150,4 +150,7 @@ drag_vertical_enabled = true
 wait_time = 2.0
 one_shot = true
 
+[node name="ThrowTimer" type="Timer" parent="."]
+
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="ThrowTimer" to="." method="_on_throw_timer_timeout"]

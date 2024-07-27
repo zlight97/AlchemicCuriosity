@@ -9,11 +9,6 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
-	
-func removeHerb(herbAreaId):
-	var h = get_node("herb"+str(herbAreaId))
-	h.picked = true
-	h.hide()
 
 func _on_area_2d_body_entered(body, id):
 	if body.name == "Player":
