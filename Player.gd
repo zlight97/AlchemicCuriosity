@@ -36,7 +36,14 @@ func process_input():
 	
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and can_throw:
 		var dest = get_global_mouse_position()
-		throw_potion.emit(position, dest, velocity)
+		#TODO make pot choosing dynamic / picked somehow
+		throw_potion.emit("thrown_potion",position, dest, velocity)
+		can_throw = false
+		$ThrowTimer.start()
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT) and can_throw:
+		var dest = get_global_mouse_position()
+		#TODO make pot choosing dynamic / picked somehow
+		throw_potion.emit("red_potion",position, dest, velocity)
 		can_throw = false
 		$ThrowTimer.start()
 

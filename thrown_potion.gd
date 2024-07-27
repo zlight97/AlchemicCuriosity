@@ -1,4 +1,4 @@
-extends Area2D
+class_name thrown_potion extends Area2D
 
 var destPos = null
 var weight = .1
@@ -15,8 +15,6 @@ func set_choords(pos,dest,charVel):
 	momentum = charVel
 	direction = (dest-pos).normalized()
 	position = pos + (direction*120)
-	#speed += (dest-pos+charVel).length()
-	#speed = (dest-pos).length()
 	$AnimatedSprite2D.animation = "thrown"
 	$AnimatedSprite2D.play()
 

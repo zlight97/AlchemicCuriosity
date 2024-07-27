@@ -1,7 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://cjoo2x5eh6k1u"]
+[gd_scene load_steps=14 format=3 uid="uid://cjoo2x5eh6k1u"]
 
 [ext_resource type="Texture2D" uid="uid://banr25gn0k6wi" path="res://assets/images/potion/potion0.png" id="1_5koli"]
-[ext_resource type="Script" path="res://thrown_potion.gd" id="1_w8hqs"]
 [ext_resource type="Texture2D" uid="uid://vf6bkeb0h3xl" path="res://assets/images/potion/potion1.png" id="2_v6i2e"]
 [ext_resource type="Texture2D" uid="uid://cj0l4gaaqnyvj" path="res://assets/images/potion/potion2.png" id="3_mvssu"]
 [ext_resource type="Texture2D" uid="uid://dcuugja68qwd3" path="res://assets/images/potion/potion3.png" id="4_eq7jx"]
@@ -64,7 +63,6 @@ animations = [{
 
 [node name="Area2D" type="Area2D"]
 z_index = 3
-script = ExtResource("1_w8hqs")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_hgrkt")
