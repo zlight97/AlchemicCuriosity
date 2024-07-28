@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://main.gd" id="1_f4c5a"]
 [ext_resource type="Script" path="res://TestNode.gd" id="3_kqcl2"]
 [ext_resource type="PackedScene" uid="uid://3bayiw0gqpvu" path="res://Player.tscn" id="4_p80hi"]
-[ext_resource type="PackedScene" uid="uid://ba654fdg6iayl" path="res://big_debug_world.tscn" id="4_vxf20"]
+[ext_resource type="PackedScene" uid="uid://eta8btpacjkr" path="res://house_inside.tscn" id="5_heurc"]
 [ext_resource type="Script" path="res://PotionManager.gd" id="5_rhn3f"]
 
 [node name="Main" type="Node"]
@@ -14,9 +14,10 @@ script = ExtResource("3_kqcl2")
 
 [node name="Player" parent="." instance=ExtResource("4_p80hi")]
 
-[node name="BigDebugWorld" parent="." instance=ExtResource("4_vxf20")]
-
 [node name="PotionManager" type="Node2D" parent="."]
 script = ExtResource("5_rhn3f")
+
+[node name="HouseInside" parent="." instance=ExtResource("5_heurc")]
+position = Vector2(199.757, -200.154)
 
 [connection signal="throw_potion" from="Player" to="PotionManager" method="_on_player_throw"]

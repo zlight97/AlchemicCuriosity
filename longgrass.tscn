@@ -71,4 +71,4 @@ position = Vector2(600, 1000)
 
 [connection signal="body_entered" from="Area2D0" to="." method="_on_area_2d_body_entered" binds= [0]]
 [connection signal="body_entered" from="Area2D1" to="." method="_on_area_2d_body_entered" binds= [1]]
-[connection signal="body_entered" from="Area2D2" to="." method="_on_area_2d_body_entered" binds= [0]]
+[connection signal="body_entered" from="Area2D2" to="." method="_on_area_2d_body_entered" binds= [2]]

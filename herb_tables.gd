@@ -2,7 +2,7 @@ extends Node
 
 const herbTables = {#weight (cumulative), name
 	"longgrass" : [100, "lavender",
-				   120,  "test"]
+				   120,  "none"]
 }
 
 const spriteChart = {

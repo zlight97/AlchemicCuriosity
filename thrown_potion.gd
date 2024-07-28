@@ -14,7 +14,7 @@ func _physics_process(delta):
 func set_choords(pos,dest,charVel):
 	momentum = charVel
 	direction = (dest-pos).normalized()
-	position = pos + (direction*120)
+	position = pos #+ (direction*120)
 	$AnimatedSprite2D.animation = "thrown"
 	$AnimatedSprite2D.play()
 
