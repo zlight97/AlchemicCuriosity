@@ -6,7 +6,8 @@ var dialogue_scene = null
 func _deferred_clear_dialogue():
 	# Immediately free the current scene,
 	# there is no risk here.
-	dialogue_scene.free()
+	if dialogue_scene:
+		dialogue_scene.free()
 	
 func move_zone(from_name,entry_point=0):
 	var path = get_node("/root/MapTables").get_map_dest(from_name, entry_point)

@@ -36,7 +36,7 @@ func talk():
 	$AnimatedSprite2D.animation = "idle2"
 	$IdleMoveTimer.stop()
 	var dialogueList = ["testdialoguetestdi\naloguetestdialogue","testdial12341234oguetestdialoguetestdialogue","testdialoguetestdialoguetestdialogue1234"]
-	get_node("/root/SceneManager").create_dialogue(dialogueList, "This is the name", "res://assets/images/sprites/teacher_sprite/teacher_dialogue.tres")
+	get_node("/root/SceneManager").create_dialogue(dialogueList, "Teacher", "res://assets/images/sprites/teacher_sprite/teacher_dialogue.tres")
 
 func _on_interact_box_body_entered(body):
 	if body.name == "Player":
