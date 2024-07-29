@@ -1,4 +1,4 @@
-extends Area2D
+class_name herb extends Area2D
 
 var herbType = null
 var picked = false

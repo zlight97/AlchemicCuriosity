@@ -6,6 +6,7 @@ var scrollSpeed = .2
 var speaker_name = null
 var m_sprite = null
 var spriteLoc = null
+var sprite = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -26,14 +27,14 @@ func setupSprite():
 	if m_sprite:
 		if typeof(m_sprite) == TYPE_STRING:
 			m_sprite = load(m_sprite)
-			if not spriteLoc:
-				spriteLoc = 'r'
-			if 'r' in spriteLoc.to_lower():
-				$"SpriteR".texture = m_sprite
-				$"SpriteR".show()
-			if 'l' in spriteLoc.to_lower():
-				$"SpriteL".texture = m_sprite
-				$"SpriteL".show()
+			if not spriteLoc or 'r' in spriteLoc.to_lower():
+				sprite = $SpriteR
+			elif 'l' in spriteLoc.to_lower():
+				sprite = $SpriteL
+			sprite.sprite_frames = m_sprite
+			sprite.show()
+			sprite.animation = "talking"
+			sprite.play()
 
 func newDialogue(dialogue_list: Array, person_name, sprite, sprite_pos):
 	speaker_name = person_name
@@ -47,6 +48,8 @@ func nextPage():
 		page+=1
 		$ContentText.text=dialogue[page]
 		$ContentText.visible_ratio=0
+		sprite.animation = "talking"
+		sprite.play()
 	else:
 		endDialogue()
 
@@ -58,11 +61,16 @@ func _input(event):
 	if event.is_pressed() and (Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) or Input.is_key_pressed(KEY_SPACE)):
 		if $ContentText.visible_ratio < 1:
 			$ContentText.visible_ratio = 1
+			sprite.animation = "normal"
+			sprite.play()
 		else:
 			nextPage()
 
 func _on_scroll_timer_timeout():
 	if $ContentText.visible_ratio < 1:
 		$ContentText.visible_ratio+=scrollSpeed
-	elif $ContentText.visible_ratio >1:
+	elif $ContentText.visible_ratio >=1:
 		$ContentText.visible_ratio = 1
+		sprite.animation = "normal"
+		sprite.play()
+		

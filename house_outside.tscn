@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://bwooj26alwhk1"]
+[gd_scene load_steps=11 format=3 uid="uid://bwooj26alwhk1"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_sxxnq"]
 [ext_resource type="TileSet" uid="uid://o02j820f730r" path="res://grass_tiles.tres" id="1_vxm40"]
 [ext_resource type="Texture2D" uid="uid://ufuxwtjitwec" path="res://assets/images/House/house_closed.png" id="3_kcxw8"]
 [ext_resource type="Script" path="res://house_outside.gd" id="3_uf61o"]
 [ext_resource type="Texture2D" uid="uid://cxcgjkspgo6e2" path="res://assets/images/House/house_open.png" id="4_xumad"]
+[ext_resource type="PackedScene" uid="uid://c6fjjk1a1xtv4" path="res://herb.tscn" id="6_pak4k"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mm28e"]
 animations = [{
@@ -65,6 +66,9 @@ position = Vector2(0, -7)
 position = Vector2(811.786, 457.421)
 polygon = PackedVector2Array(-12.786, -8.42099, -50.786, -8.42099, -59.786, -76.4207, -67.786, -201.421, -58.786, -218.421, -61.786, -345.421, -11.786, -357.421, 88.214, -357.421, 255.214, -341.421, 256.214, -285.421, 264.214, -273.421, 263.214, -228.421, 251.214, -222.421, 249.214, -180.421, 255.214, -174.421, 252.214, -161.421, 241.214, -160.421, 240.214, -122.421, 129.214, -117.421, 129.214, -68.4207, 119.214, -66.4207, 117.214, -10.421, 79.214, -8.42099, 68.214, -22.421, 67.214, -78.421, 3.21399, -80.421, 0.213989, -25.421)
 
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Area2D/StaticBody2D"]
+polygon = PackedVector2Array(0, 0, -3, 0, -400, 0, -400, -200, 1400, -200, 1400, 900, -400, 900, -400, 0, 0, 0, 0, 300, -200, 300, -200, 500, 0, 500, 0, 700, 1200, 700, 1200, 0, 4, 0)
+
 [node name="Area2D0" type="Area2D" parent="."]
 position = Vector2(-200, 300)
 
@@ -84,6 +88,21 @@ position = Vector2(105, 396)
 
 [node name="EntryNode1" type="Node2D" parent="."]
 position = Vector2(847, 561)
+
+[node name="herb" parent="." instance=ExtResource("6_pak4k")]
+position = Vector2(526, 152)
+
+[node name="herb2" parent="." instance=ExtResource("6_pak4k")]
+position = Vector2(981, 562)
+
+[node name="herb3" parent="." instance=ExtResource("6_pak4k")]
+position = Vector2(567, 497)
+
+[node name="herb4" parent="." instance=ExtResource("6_pak4k")]
+position = Vector2(267, 144)
+
+[node name="herb5" parent="." instance=ExtResource("6_pak4k")]
+position = Vector2(395, 152)
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
 [connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]

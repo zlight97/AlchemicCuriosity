@@ -2,10 +2,6 @@ extends Node
 
 var current_scene = null
 var dialogue_scene = null
-
-func _ready():
-		var root = get_tree().get_root()
-		current_scene = root.get_child(root.get_child_count() -1)
 		
 func _deferred_clear_dialogue():
 	# Immediately free the current scene,
@@ -29,8 +25,6 @@ func _deferred_move_zone(path,exit_point):
 	scene.remove_child(player)
 	scene.add_child(current_scene)
 	player.set_choords(ch)
-	print(current_scene)
-	print(current_scene.name)
 	player.set_camera_bounds(get_node("/root/MapTables").cameraBounds[current_scene.name])
 	scene.add_child(player)
 	
@@ -79,6 +73,8 @@ func _deferred_goto_scene(path):
 	# Optional, to make it compatible with the SceneTree.change_scene() API.
 	get_tree().set_current_scene(current_scene)
 
-
-func _on_dialogue_box_hidden():
+func clear_dialogue():
 	call_deferred("_deferred_clear_dialogue")
+	
+func _on_dialogue_box_hidden():
+	clear_dialogue()

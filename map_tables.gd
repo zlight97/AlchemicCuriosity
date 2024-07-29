@@ -30,7 +30,7 @@ const cameraBounds = {
 	"BigDebugWorld":[-800,-496,2352,1328],
 	"longgrass":[0,0,3500,1200],
 	"HouseOutside":[0,0,1200,700],
-	"HouseInside":[-400,-400,1200,700]
+	"HouseInside":[-400,-400,1200,800]
 }
 
 func get_map_dest(entry_name, entry_loc):

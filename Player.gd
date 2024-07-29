@@ -15,6 +15,7 @@ var canDash = true
 var dash_cd = DASH_COOLDOWN
 var transporting = false
 var can_throw = true
+var dialogueArea = null
 
 func _ready():
 	transporting = false
@@ -33,6 +34,7 @@ func process_input():
 			
 	if Input.is_action_just_pressed("use"):
 		gatherHerb()
+		talk()
 	
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and can_throw:
 		var dest = get_global_mouse_position()
@@ -55,6 +57,10 @@ func gatherHerb():
 			ingredients[herbArea.herbType] = 1
 		herbArea.pick()
 		herbArea = null
+
+func talk():
+	if dialogueArea:
+		dialogueArea.talk()
 
 func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.

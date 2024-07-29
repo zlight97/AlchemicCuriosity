@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://eta8btpacjkr"]
+[gd_scene load_steps=5 format=3 uid="uid://eta8btpacjkr"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_nltg6"]
 [ext_resource type="TileSet" uid="uid://qgyba350jh37" path="res://assets/images/tiles/house/house_inside.tres" id="1_ykk40"]
+[ext_resource type="PackedScene" uid="uid://cutxmkv4eythd" path="res://teacher.tscn" id="3_367rd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_movu0"]
 size = Vector2(278, 200)
@@ -27,8 +28,13 @@ shape = SubResource("RectangleShape2D_movu0")
 [node name="EntryNode0" type="Node2D" parent="."]
 position = Vector2(502, 630)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="WallCollisions" type="StaticBody2D" parent="."]
 position = Vector2(200, -200)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WallCollisions"]
 polygon = PackedVector2Array(0, 300, -200, 300, -200, -100, 1100, -100, 1100, 700, 700, 700, 700, 1000, 700, 1300, -100, 1300, -100, 300, 0, 300, 0, 1000, 200, 1000, 200, 1200, 400, 1200, 400, 1000, 600, 1000, 600, 600, 1000, 600, 1000, 300)
+
+[node name="Teacher" parent="." instance=ExtResource("3_367rd")]
+position = Vector2(400, 300)
+
+[connection signal="body_entered" from="Area2D0" to="." method="_on_area_2d_body_entered" binds= [0]]

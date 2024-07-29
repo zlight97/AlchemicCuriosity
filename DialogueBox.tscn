@@ -1,10 +1,24 @@
 [gd_scene load_steps=3 format=3 uid="uid://b7gkw0jwt6e6l"]
 
 [ext_resource type="Script" path="res://DialogueBox.gd" id="1_24hec"]
-[ext_resource type="Texture2D" uid="uid://nxmjv2ff0pon" path="res://assets/debugSprite.png" id="2_fbvr0"]
+[ext_resource type="SpriteFrames" uid="uid://dq384sj1mh1d7" path="res://assets/images/sprites/teacher_sprite/teacher_dialogue.tres" id="2_wu5fm"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_24hec")
+
+[node name="SpriteR" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(976, 320)
+scale = Vector2(0.606667, 0.606667)
+sprite_frames = ExtResource("2_wu5fm")
+animation = &"talking"
+
+[node name="SpriteL" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(232.793, 327.207)
+scale = Vector2(0.557356, 0.557356)
+sprite_frames = ExtResource("2_wu5fm")
+animation = &"normal"
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 position = Vector2(0, 64.0001)
@@ -37,19 +51,5 @@ offset_right = 217.0
 offset_bottom = 496.001
 bbcode_enabled = true
 
-[node name="SpriteR" type="Sprite2D" parent="."]
-visible = false
-show_behind_parent = true
-position = Vector2(992, 416)
-scale = Vector2(0.205707, 0.19836)
-texture = ExtResource("2_fbvr0")
-
-[node name="SpriteL" type="Sprite2D" parent="."]
-visible = false
-show_behind_parent = true
-position = Vector2(192, 416)
-scale = Vector2(0.205707, 0.19836)
-texture = ExtResource("2_fbvr0")
-
-[connection signal="timeout" from="ScrollTimer" to="Polygon2D" method="_on_scroll_timer_timeout"]
 [connection signal="timeout" from="ScrollTimer" to="." method="_on_scroll_timer_timeout"]
+[connection signal="timeout" from="ScrollTimer" to="Polygon2D" method="_on_scroll_timer_timeout"]

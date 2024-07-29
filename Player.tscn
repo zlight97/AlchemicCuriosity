@@ -127,6 +127,9 @@ size = Vector2(55, 58.7794)
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
+slide_on_ceiling = false
+platform_on_leave = 2
+platform_floor_layers = 4294901760
 script = ExtResource("1_k11tk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

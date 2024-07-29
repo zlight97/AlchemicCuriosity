@@ -1,0 +1,43 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://dq384sj1mh1d7"]
+
+[ext_resource type="Texture2D" uid="uid://c16lc82805f72" path="res://assets/images/sprites/teacher_sprite/normal.png" id="1_cpi3o"]
+[ext_resource type="Texture2D" uid="uid://ddruwipni0ap1" path="res://assets/images/sprites/teacher_sprite/blinking.png" id="2_2gndb"]
+[ext_resource type="Texture2D" uid="uid://v8epfc603l0x" path="res://assets/images/sprites/teacher_sprite/talking.png" id="3_hnxn2"]
+[ext_resource type="Texture2D" uid="uid://bi76cay2n0lki" path="res://assets/images/sprites/teacher_sprite/talking_blinking.png" id="4_6o7qi"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_cpi3o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_2gndb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_cpi3o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_cpi3o")
+}],
+"loop": true,
+"name": &"normal",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_hnxn2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_6o7qi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hnxn2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hnxn2")
+}],
+"loop": true,
+"name": &"talking",
+"speed": 2.0
+}]

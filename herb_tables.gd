@@ -2,6 +2,8 @@ extends Node
 
 const herbTables = {#weight (cumulative), name
 	"longgrass" : [100, "lavender",
+				   120,  "none"],
+	"HouseOutside" : [100, "lavender",
 				   120,  "none"]
 }
 
