@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://3bayiw0gqpvu"]
+[gd_scene load_steps=18 format=3 uid="uid://3bayiw0gqpvu"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_k11tk"]
 [ext_resource type="Texture2D" uid="uid://bchjxafki48c" path="res://assets/images/sprites/noirsong_spritesheet.png" id="2_scjdg"]
@@ -125,6 +125,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_46afe"]
 size = Vector2(55, 58.7794)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ws0aj"]
+radius = 57.8705
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
 slide_on_ceiling = false
@@ -155,5 +158,18 @@ one_shot = true
 
 [node name="ThrowTimer" type="Timer" parent="."]
 
+[node name="InteractBox" type="Area2D" parent="."]
+
+[node name="InteractArea" type="CollisionShape2D" parent="InteractBox"]
+position = Vector2(-1, 7)
+shape = SubResource("CircleShape2D_ws0aj")
+
+[node name="InvulnTimer" type="Timer" parent="."]
+
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="ThrowTimer" to="." method="_on_throw_timer_timeout"]
+[connection signal="area_entered" from="InteractBox" to="." method="_on_interact_box_area_entered"]
+[connection signal="area_exited" from="InteractBox" to="." method="_on_interact_box_area_exited"]
+[connection signal="body_entered" from="InteractBox" to="." method="_on_interact_box_body_entered"]
+[connection signal="body_exited" from="InteractBox" to="." method="_on_interact_box_body_exited"]
+[connection signal="timeout" from="InvulnTimer" to="." method="_on_invuln_timer_timeout"]

@@ -33,20 +33,18 @@ func _on_idle_move_timer_timeout():
 func talk():
 	idle = true
 	talking = true
+	velocity.x = 0
+	velocity.y = 0
 	$AnimatedSprite2D.animation = "idle2"
 	$IdleMoveTimer.stop()
 	var dialogueList = ["testdialoguetestdi\naloguetestdialogue","testdial12341234oguetestdialoguetestdialogue","testdialoguetestdialoguetestdialogue1234"]
 	get_node("/root/SceneManager").create_dialogue(dialogueList, "Teacher", "res://assets/images/sprites/teacher_sprite/teacher_dialogue.tres")
 
-func _on_interact_box_body_entered(body):
-	if body.name == "Player":
-		body.dialogueArea = self
+func interact(player):
+	talk()
 
-
-func _on_interact_box_body_exited(body):
-	if body.name == "Player":
-		body.dialogueArea = null
-		if talking:
-			talking = false
-			$IdleMoveTimer.start()
-			get_node("/root/SceneManager").clear_dialogue()
+func interact_stop():
+	if talking:
+		talking = false
+		$IdleMoveTimer.start()
+		get_node("/root/SceneManager").clear_dialogue()

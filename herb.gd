@@ -31,11 +31,15 @@ func _ready():
 	setSprite()
 	
 
+func interact(player):
+	if herbType in player.ingredients:
+		player.ingredients[herbType] += 1
+	else:
+		player.ingredients[herbType] = 1
+	pick()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func interact_stop():
 	pass
-
 
 func _on_body_entered(body):
 	if !picked and body.name == "Player":

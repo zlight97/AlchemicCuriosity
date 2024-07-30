@@ -46,27 +46,27 @@ layer_2/name = "top"
 layer_2/tile_data = PackedInt32Array(196609, 131074, 0, 327682, 131074, 0, 196612, 131074, 0, 327685, 131074, 0, 327684, 131074, 0)
 script = ExtResource("1_sxxnq")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="House" type="Area2D" parent="."]
 position = Vector2(0, 7)
 script = ExtResource("3_uf61o")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="House"]
 position = Vector2(893, 263)
 sprite_frames = SubResource("SpriteFrames_mm28e")
 animation = &"closed"
 
-[node name="OpenDoorTrigger" type="CollisionShape2D" parent="Area2D"]
+[node name="OpenDoorTrigger" type="CollisionShape2D" parent="House"]
 position = Vector2(847.5, 462.25)
 shape = SubResource("RectangleShape2D_usnor")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Area2D"]
+[node name="StaticBody2D" type="StaticBody2D" parent="House"]
 position = Vector2(0, -7)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D/StaticBody2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="House/StaticBody2D"]
 position = Vector2(811.786, 457.421)
 polygon = PackedVector2Array(-12.786, -8.42099, -50.786, -8.42099, -59.786, -76.4207, -67.786, -201.421, -58.786, -218.421, -61.786, -345.421, -11.786, -357.421, 88.214, -357.421, 255.214, -341.421, 256.214, -285.421, 264.214, -273.421, 263.214, -228.421, 251.214, -222.421, 249.214, -180.421, 255.214, -174.421, 252.214, -161.421, 241.214, -160.421, 240.214, -122.421, 129.214, -117.421, 129.214, -68.4207, 119.214, -66.4207, 117.214, -10.421, 79.214, -8.42099, 68.214, -22.421, 67.214, -78.421, 3.21399, -80.421, 0.213989, -25.421)
 
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Area2D/StaticBody2D"]
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="House/StaticBody2D"]
 polygon = PackedVector2Array(0, 0, -3, 0, -400, 0, -400, -200, 1400, -200, 1400, 900, -400, 900, -400, 0, 0, 0, 0, 300, -200, 300, -200, 500, 0, 500, 0, 700, 1200, 700, 1200, 0, 4, 0)
 
 [node name="Area2D0" type="Area2D" parent="."]
@@ -104,7 +104,7 @@ position = Vector2(267, 144)
 [node name="herb5" parent="." instance=ExtResource("6_pak4k")]
 position = Vector2(395, 152)
 
-[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
-[connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]
+[connection signal="body_entered" from="House" to="House" method="_on_body_entered"]
+[connection signal="body_exited" from="House" to="House" method="_on_body_exited"]
 [connection signal="body_entered" from="Area2D0" to="." method="_on_area_2d_body_entered" binds= [0]]
 [connection signal="body_entered" from="Area2D1" to="." method="_on_area_2d_body_entered" binds= [1]]

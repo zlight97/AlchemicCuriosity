@@ -1,11 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://eta8btpacjkr"]
+[gd_scene load_steps=6 format=3 uid="uid://eta8btpacjkr"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_nltg6"]
 [ext_resource type="TileSet" uid="uid://qgyba350jh37" path="res://assets/images/tiles/house/house_inside.tres" id="1_ykk40"]
 [ext_resource type="PackedScene" uid="uid://cutxmkv4eythd" path="res://teacher.tscn" id="3_367rd"]
+[ext_resource type="PackedScene" uid="uid://bbm52ufo3frol" path="res://crafting_station.tscn" id="4_w43oy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_movu0"]
-size = Vector2(278, 200)
+size = Vector2(278, 194)
 
 [node name="HouseInside" type="TileMap"]
 tile_set = ExtResource("1_ykk40")
@@ -22,7 +23,7 @@ script = ExtResource("1_nltg6")
 position = Vector2(371, 803)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D0"]
-position = Vector2(124, 95)
+position = Vector2(124, 98)
 shape = SubResource("RectangleShape2D_movu0")
 
 [node name="EntryNode0" type="Node2D" parent="."]
@@ -36,5 +37,8 @@ polygon = PackedVector2Array(0, 300, -200, 300, -200, -100, 1100, -100, 1100, 70
 
 [node name="Teacher" parent="." instance=ExtResource("3_367rd")]
 position = Vector2(400, 300)
+
+[node name="CraftingStation" parent="." instance=ExtResource("4_w43oy")]
+position = Vector2(1041, 259)
 
 [connection signal="body_entered" from="Area2D0" to="." method="_on_area_2d_body_entered" binds= [0]]

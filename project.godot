@@ -21,6 +21,10 @@ SceneManager="*res://SceneManager.gd"
 MapTables="*res://map_tables.gd"
 HerbTables="*res://herb_tables.gd"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [editor]
 
 movie_writer/mix_rate=8000

@@ -4,18 +4,25 @@ signal throw_potion
 
 const START_SPEED = 300.0
 const DASH_COOLDOWN = 2.0
+const MAX_HP = 100
+
+var current_hp = MAX_HP
+var speed = START_SPEED
+var dash_cd = DASH_COOLDOWN
+
+var invuln = false
 
 var ingredients = {
 	"lavender":0,
-	"test":0
+	"celestial":0,
 }
+
 var herbArea = null
-var speed = START_SPEED
 var canDash = true
-var dash_cd = DASH_COOLDOWN
 var transporting = false
 var can_throw = true
 var dialogueArea = null
+var interactable = []
 
 func _ready():
 	transporting = false
@@ -33,8 +40,10 @@ func process_input():
 			$"DashTimer".start()
 			
 	if Input.is_action_just_pressed("use"):
-		gatherHerb()
-		talk()
+		if len(interactable) > 0:
+			interactable[0].interact(self)
+		#gatherHerb()
+		#talk()
 	
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and can_throw:
 		var dest = get_global_mouse_position()
@@ -104,7 +113,41 @@ func set_camera_bounds(charr):
 	$"PlayerCamera".limit_right = charr[2]
 	$"PlayerCamera".limit_bottom = charr[3]
 	
-
+func damage(amount_hit):
+	if !invuln:
+		current_hp -= amount_hit
+		invuln = true
+	print(current_hp)
+	
 
 func _on_throw_timer_timeout():
 	can_throw = true
+
+
+func _on_interact_box_body_entered(body):
+	if body.has_method("interact"):
+		interactable.append(body)
+
+
+func _on_interact_box_body_exited(body):
+	var i = interactable.find(body)
+	if i>=0:
+		interactable[i].interact_stop()
+		interactable.remove_at(i)
+
+
+func _on_interact_box_area_entered(area):
+	if area.has_method("interact"):
+		interactable.append(area)
+		
+
+
+func _on_interact_box_area_exited(area):
+	var i = interactable.find(area)
+	if i>=0:
+		interactable[i].interact_stop()
+		interactable.remove_at(i)
+
+
+func _on_invuln_timer_timeout():
+	invuln = false

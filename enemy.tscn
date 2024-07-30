@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://vvfu0erc4r6r"]
+
+[ext_resource type="Script" path="res://enemy.gd" id="1_1ukbc"]
+[ext_resource type="SpriteFrames" uid="uid://55xpidu2wb62" path="res://assets/images/sprites/snake.tres" id="2_obast"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1alnb"]
+radius = 50.4876
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qrfy0"]
+radius = 514.56
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mrswo"]
+radius = 110.073
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_1ukbc")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(24, -14)
+sprite_frames = ExtResource("2_obast")
+animation = &"hurt"
+
+[node name="Collisions" type="CollisionShape2D" parent="."]
+position = Vector2(-5, 10)
+shape = SubResource("CircleShape2D_1alnb")
+
+[node name="Detection" type="Area2D" parent="."]
+
+[node name="DetectionZone" type="CollisionShape2D" parent="Detection"]
+shape = SubResource("CircleShape2D_qrfy0")
+
+[node name="Attack" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack"]
+shape = SubResource("CircleShape2D_mrswo")
+
+[node name="AttackCD" type="Timer" parent="."]
+
+[node name="InvulnTimer" type="Timer" parent="."]
