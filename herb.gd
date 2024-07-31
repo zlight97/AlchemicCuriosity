@@ -27,7 +27,8 @@ func setSprite():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var infoTable = get_node("/root/HerbTables").herbTables[get_node("/root/SceneManager").current_scene.name]
-	setHerbType(infoTable)
+	if !herbType:
+		setHerbType(infoTable)
 	setSprite()
 	
 
@@ -40,12 +41,3 @@ func interact(player):
 
 func interact_stop():
 	pass
-
-func _on_body_entered(body):
-	if !picked and body.name == "Player":
-		body.herbArea = self
-
-
-func _on_body_exited(body):
-	if !picked and body.name == "Player":
-		body.herbArea = null

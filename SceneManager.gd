@@ -2,12 +2,14 @@ extends Node
 
 var current_scene = null
 var dialogue_scene = null
+var player = null
 		
 func _deferred_clear_dialogue():
 	# Immediately free the current scene,
 	# there is no risk here.
 	if dialogue_scene:
 		dialogue_scene.free()
+		dialogue_scene = null
 	
 func move_zone(from_name,entry_point=0):
 	var path = get_node("/root/MapTables").get_map_dest(from_name, entry_point)
@@ -22,7 +24,7 @@ func _deferred_move_zone(path,exit_point):
 	
 	var root = get_tree().get_root()
 	var scene = root.get_node("Main")
-	var player = scene.get_node("Player")
+	player = scene.get_node("Player")
 	scene.remove_child(player)
 	scene.add_child(current_scene)
 	player.set_choords(ch)

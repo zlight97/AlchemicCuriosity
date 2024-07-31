@@ -6,21 +6,27 @@ var velocity: Vector2
 var direction: Vector2
 var speed: float = 300.0
 var momentum: Vector2
+var momentum_scale = .6
 var broken = false
+var damage = 25
 	
 func _physics_process(delta):
-	position += speed * (direction + momentum.normalized()*.6) * delta
+	position += speed * (direction + momentum.normalized()*momentum_scale) * delta
 	
 func set_choords(pos,dest,charVel):
 	momentum = charVel
 	direction = (dest-pos).normalized()
-	position = pos #+ (direction*120)
+	position = pos
 	$AnimatedSprite2D.animation = "thrown"
 	$AnimatedSprite2D.play()
 
 func _on_body_entered(body):
 	if body.name != "Player":
 		break_potion()
+		if body.has_method("damage"):
+			body.damage(damage)
+		if body.has_method("apply_effect"):
+			body.apply_effect()
 
 func break_potion():
 	broken = true

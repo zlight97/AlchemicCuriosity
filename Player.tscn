@@ -165,6 +165,7 @@ position = Vector2(-1, 7)
 shape = SubResource("CircleShape2D_ws0aj")
 
 [node name="InvulnTimer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="ThrowTimer" to="." method="_on_throw_timer_timeout"]

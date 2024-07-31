@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://bly70l6j4l835"]
+
+[ext_resource type="Script" path="res://Scenes/Enemies/slime_ranged.gd" id="1_6bso4"]
+[ext_resource type="SpriteFrames" uid="uid://brwvjtvdldllg" path="res://assets/images/sprites/slime.tres" id="2_dajst"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_74wof"]
+radius = 36.0139
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qrfy0"]
+radius = 900.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mrswo"]
+radius = 498.049
+
+[node name="Slime" type="CharacterBody2D"]
+platform_on_leave = 2
+platform_floor_layers = 4294901760
+script = ExtResource("1_6bso4")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_dajst")
+animation = &"move"
+frame_progress = 0.00457288
+
+[node name="Collisions" type="CollisionShape2D" parent="."]
+position = Vector2(1, 12)
+shape = SubResource("CircleShape2D_74wof")
+
+[node name="Detection" type="Area2D" parent="."]
+
+[node name="DetectionZone" type="CollisionShape2D" parent="Detection"]
+shape = SubResource("CircleShape2D_qrfy0")
+debug_color = Color(1, 1, 0, 0.419608)
+
+[node name="Attack" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack"]
+position = Vector2(2, 7)
+shape = SubResource("CircleShape2D_mrswo")
+debug_color = Color(0.988235, 0, 0, 0.419608)
+
+[node name="AttackCD" type="Timer" parent="."]
+
+[node name="InvulnTimer" type="Timer" parent="."]

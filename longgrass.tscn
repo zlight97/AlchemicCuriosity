@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cox0tiftggtrd"]
+[gd_scene load_steps=9 format=3 uid="uid://cox0tiftggtrd"]
 
 [ext_resource type="TileSet" uid="uid://o02j820f730r" path="res://grass_tiles.tres" id="1_2ppjo"]
 [ext_resource type="Script" path="res://world.gd" id="2_a24ly"]
 [ext_resource type="PackedScene" uid="uid://c6fjjk1a1xtv4" path="res://herb.tscn" id="3_yabbx"]
+[ext_resource type="PackedScene" uid="uid://vvfu0erc4r6r" path="res://Scenes/Enemies/snake.tscn" id="4_sdprj"]
+[ext_resource type="PackedScene" uid="uid://vqgdox558gxf" path="res://Scenes/Enemies/slime.tscn" id="5_3aljg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aohe4"]
 size = Vector2(200, 200)
@@ -30,6 +32,9 @@ position = Vector2(100, 900)
 [node name="EntryNode1" type="Node2D" parent="."]
 position = Vector2(2700, 1100)
 
+[node name="EntryNode2" type="Node2D" parent="."]
+position = Vector2(3400, 600)
+
 [node name="Area2D0" type="Area2D" parent="."]
 position = Vector2(2600, 1200)
 
@@ -51,9 +56,6 @@ position = Vector2(3500, 500)
 position = Vector2(150, 150)
 shape = SubResource("RectangleShape2D_chqhv")
 
-[node name="EntryNode2" type="Node2D" parent="."]
-position = Vector2(3400, 600)
-
 [node name="herb0" parent="." instance=ExtResource("3_yabbx")]
 position = Vector2(600, 700)
 
@@ -73,6 +75,15 @@ position = Vector2(600, 1000)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(0, 0, 0, 100, 0, 800, -200, 800, -200, 1000, 0, 1000, 0, 1200, 2600, 1200, 2600, 1400, 2800, 1400, 2800, 1200, 3500, 1200, 3500, 800, 3800, 800, 3800, 500, 3500, 500, 3500, 0, 0, 0, 0, -300, 4100, -300, 4100, 1600, -400, 1600, -400, -300, 0, -300)
+
+[node name="Snake" parent="." instance=ExtResource("4_sdprj")]
+position = Vector2(1000, 500)
+
+[node name="Snake2" parent="." instance=ExtResource("4_sdprj")]
+position = Vector2(2200, 900)
+
+[node name="Slime" parent="." instance=ExtResource("5_3aljg")]
+position = Vector2(3000, 200)
 
 [connection signal="body_entered" from="Area2D0" to="." method="_on_area_2d_body_entered" binds= [0]]
 [connection signal="body_entered" from="Area2D1" to="." method="_on_area_2d_body_entered" binds= [1]]

@@ -1,0 +1,35 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://c8kvp5k645yqn"]
+
+[ext_resource type="Texture2D" uid="uid://d2vg8nmkp7vep" path="res://assets/images/attacks/slime_ranged/slime_ranged1.png" id="1_mi0c1"]
+[ext_resource type="Texture2D" uid="uid://rhnjocajymrn" path="res://assets/images/attacks/slime_ranged/slime_ranged2.png" id="2_f1e12"]
+[ext_resource type="Texture2D" uid="uid://b2gx2khhkjrhi" path="res://assets/images/attacks/slime_ranged/slime_ranged3.png" id="3_1dsev"]
+[ext_resource type="Texture2D" uid="uid://pgmaa1q6tali" path="res://assets/images/attacks/slime_ranged/slime_ranged4.png" id="4_2qnt7"]
+[ext_resource type="Texture2D" uid="uid://c60jj4b8mr8cw" path="res://assets/images/attacks/slime_ranged/slime_ranged0.png" id="5_ld4t1"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_mi0c1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_f1e12")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_1dsev")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_2qnt7")
+}],
+"loop": true,
+"name": &"done",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_ld4t1")
+}],
+"loop": true,
+"name": &"flying",
+"speed": 5.0
+}]

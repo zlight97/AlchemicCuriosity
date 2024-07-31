@@ -12,6 +12,6 @@ func _on_player_throw(potName, pos, dest, charSpeed):
 	var objId = pot.get_instance_id();
 	pot.set_script(load(potion_script_map[potName]));
 	pot = instance_from_id(objId);
-	add_child(pot)
+	get_node("/root/SceneManager").current_scene.add_child(pot)
 	pot.set_choords(pos,dest, charSpeed)
 	pot.add_to_group("potions")

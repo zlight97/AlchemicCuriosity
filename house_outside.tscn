@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bwooj26alwhk1"]
+[gd_scene load_steps=12 format=3 uid="uid://bwooj26alwhk1"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_sxxnq"]
 [ext_resource type="TileSet" uid="uid://o02j820f730r" path="res://grass_tiles.tres" id="1_vxm40"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://house_outside.gd" id="3_uf61o"]
 [ext_resource type="Texture2D" uid="uid://cxcgjkspgo6e2" path="res://assets/images/House/house_open.png" id="4_xumad"]
 [ext_resource type="PackedScene" uid="uid://c6fjjk1a1xtv4" path="res://herb.tscn" id="6_pak4k"]
+[ext_resource type="PackedScene" uid="uid://bly70l6j4l835" path="res://Scenes/Enemies/slime_ranged.tscn" id="7_uosxp"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mm28e"]
 animations = [{
@@ -103,6 +104,9 @@ position = Vector2(267, 144)
 
 [node name="herb5" parent="." instance=ExtResource("6_pak4k")]
 position = Vector2(395, 152)
+
+[node name="Slime" parent="." instance=ExtResource("7_uosxp")]
+position = Vector2(200, 200)
 
 [connection signal="body_entered" from="House" to="House" method="_on_body_entered"]
 [connection signal="body_exited" from="House" to="House" method="_on_body_exited"]

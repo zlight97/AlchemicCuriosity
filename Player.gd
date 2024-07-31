@@ -9,7 +9,7 @@ const MAX_HP = 100
 var current_hp = MAX_HP
 var speed = START_SPEED
 var dash_cd = DASH_COOLDOWN
-
+var invulnDuration = 0.5
 var invuln = false
 
 var ingredients = {
@@ -17,12 +17,12 @@ var ingredients = {
 	"celestial":0,
 }
 
-var herbArea = null
 var canDash = true
 var transporting = false
 var can_throw = true
-var dialogueArea = null
 var interactable = []
+
+var originalModulate = null
 
 func _ready():
 	transporting = false
@@ -42,8 +42,6 @@ func process_input():
 	if Input.is_action_just_pressed("use"):
 		if len(interactable) > 0:
 			interactable[0].interact(self)
-		#gatherHerb()
-		#talk()
 	
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and can_throw:
 		var dest = get_global_mouse_position()
@@ -57,19 +55,6 @@ func process_input():
 		throw_potion.emit("red_potion",position, dest, velocity)
 		can_throw = false
 		$ThrowTimer.start()
-
-func gatherHerb():
-	if herbArea:
-		if herbArea.herbType in ingredients:
-			ingredients[herbArea.herbType] += 1
-		else:
-			ingredients[herbArea.herbType] = 1
-		herbArea.pick()
-		herbArea = null
-
-func talk():
-	if dialogueArea:
-		dialogueArea.talk()
 
 func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
@@ -91,6 +76,9 @@ func _physics_process(delta):
 		$AnimatedSprite2D.stop()
 		$AnimatedSprite2D.frame = 1
 
+#TBD how this works
+func apply_effect():
+	pass
 
 func _on_dash_timer_timeout():
 	canDash = true
@@ -115,9 +103,13 @@ func set_camera_bounds(charr):
 	
 func damage(amount_hit):
 	if !invuln:
-		current_hp -= amount_hit
+		current_hp = current_hp - amount_hit
 		invuln = true
-	print(current_hp)
+		$InvulnTimer.wait_time = invulnDuration
+		$InvulnTimer.start()
+		originalModulate = modulate
+		modulate = Color.RED
+		print(current_hp)
 	
 
 func _on_throw_timer_timeout():
@@ -151,3 +143,4 @@ func _on_interact_box_area_exited(area):
 
 func _on_invuln_timer_timeout():
 	invuln = false
+	modulate = originalModulate
