@@ -18,9 +18,9 @@ func create_new_attack(pos, dest):
 
 func ranged_attack():
 	var type = randi() % 100
-	if type < 45:
+	if type < 60:
 		create_new_attack(position, player.position)
-		if type < 10:
+		if type < 25:
 			var angle = position.angle_to_point(player.position)
 			var length = position.distance_to(player.position)
 			var vec1 = Vector2(position.x + cos(angle+.35) * length, position.y + sin(angle+.35) * length)

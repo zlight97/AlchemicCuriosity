@@ -9,10 +9,11 @@ var damage = 5
 var ttl = 1.0
 
 func init():
-	$AnimatedSprite2D.animation_looped.connect(_on_animated_sprite_2d_animation_looped)
-	body_entered.connect(_on_body_entered)
+	pass
 func _ready():
 	$TTL.timeout.connect(hit)
+	$AnimatedSprite2D.animation_looped.connect(_on_animated_sprite_2d_animation_looped)
+	body_entered.connect(_on_body_entered)
 	init()
 
 func _physics_process(delta):

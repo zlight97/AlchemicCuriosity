@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
 signal throw_potion
+signal took_damage
+signal reset
 
 const START_SPEED = 300.0
 const DASH_COOLDOWN = 2.0
@@ -57,6 +59,8 @@ func process_input():
 		$ThrowTimer.start()
 
 func _physics_process(delta):
+	if current_hp <= 0:
+		return
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	process_input()
@@ -109,8 +113,29 @@ func damage(amount_hit):
 		$InvulnTimer.start()
 		originalModulate = modulate
 		modulate = Color.RED
-		print(current_hp)
+		took_damage.emit()
+		if current_hp <= 0:
+			die()
+
+func reset_vars():
+	current_hp = MAX_HP
+	speed = START_SPEED
+	dash_cd = DASH_COOLDOWN
+	invulnDuration = 0.5	
+	invuln = false
+	canDash = true
+	transporting = false
+	can_throw = true
+	interactable = []
+	$AnimatedSprite2D.animation = "move1"
+	took_damage.emit()
 	
+	
+func die():
+	reset.emit()
+
+func respawn():
+	reset_vars()
 
 func _on_throw_timer_timeout():
 	can_throw = true

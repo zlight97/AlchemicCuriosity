@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0scju3efuurt"]
+
+[ext_resource type="Script" path="res://Scenes/fade_to_black.gd" id="1_wq6x2"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_wq6x2")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0, 0, 0, 0)
+polygon = PackedVector2Array(0, 0, 1300, 0, 1300, 700, 0, 700)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="stop"]

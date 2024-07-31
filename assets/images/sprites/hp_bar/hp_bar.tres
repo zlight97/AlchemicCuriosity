@@ -1,0 +1,85 @@
+[gd_resource type="SpriteFrames" load_steps=9 format=3 uid="uid://dk6512ciungnc"]
+
+[ext_resource type="Texture2D" uid="uid://cnxvc8i86fvht" path="res://assets/images/sprites/hp_bar/hp0.png" id="1_m08q1"]
+[ext_resource type="Texture2D" uid="uid://67w2vsr35l1y" path="res://assets/images/sprites/hp_bar/hp1.png" id="2_puypg"]
+[ext_resource type="Texture2D" uid="uid://nnwx8sv32j4a" path="res://assets/images/sprites/hp_bar/hp2.png" id="3_1i5cp"]
+[ext_resource type="Texture2D" uid="uid://blet7oofw132t" path="res://assets/images/sprites/hp_bar/hp3.png" id="4_y2exl"]
+[ext_resource type="Texture2D" uid="uid://cm8ji7lllycjw" path="res://assets/images/sprites/hp_bar/hp4.png" id="5_kss1y"]
+[ext_resource type="Texture2D" uid="uid://df838pj8a1txi" path="res://assets/images/sprites/hp_bar/hp5.png" id="6_n8q3m"]
+[ext_resource type="Texture2D" uid="uid://p8wbwumbt3v3" path="res://assets/images/sprites/hp_bar/hp6.png" id="7_sjb15"]
+[ext_resource type="Texture2D" uid="uid://du8o5w4jqrrlu" path="res://assets/images/sprites/hp_bar/hp7.png" id="8_xbtbl"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_m08q1")
+}],
+"loop": true,
+"name": &"0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_puypg")
+}],
+"loop": true,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_1i5cp")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_y2exl")
+}],
+"loop": true,
+"name": &"3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_kss1y")
+}],
+"loop": true,
+"name": &"4",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_n8q3m")
+}],
+"loop": true,
+"name": &"5",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_sjb15")
+}],
+"loop": true,
+"name": &"6",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_xbtbl")
+}],
+"loop": true,
+"name": &"7",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_xbtbl")
+}],
+"loop": true,
+"name": &"8",
+"speed": 5.0
+}]

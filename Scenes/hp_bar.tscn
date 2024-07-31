@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://wk2i2jkk3hwf"]
+
+[ext_resource type="Script" path="res://Scenes/hp_bar.gd" id="1_1jxpk"]
+[ext_resource type="SpriteFrames" uid="uid://dk6512ciungnc" path="res://assets/images/sprites/hp_bar/hp_bar.tres" id="1_ybw5a"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_1jxpk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(134, 87)
+scale = Vector2(0.43, 0.43)
+sprite_frames = ExtResource("1_ybw5a")
+animation = &"8"
+autoplay = "7"

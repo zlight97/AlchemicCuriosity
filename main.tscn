@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://ce0pd508mtjua"]
+[gd_scene load_steps=7 format=3 uid="uid://ce0pd508mtjua"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_f4c5a"]
+[ext_resource type="PackedScene" uid="uid://wk2i2jkk3hwf" path="res://Scenes/hp_bar.tscn" id="2_jqfa6"]
 [ext_resource type="PackedScene" uid="uid://3bayiw0gqpvu" path="res://Player.tscn" id="4_p80hi"]
-[ext_resource type="PackedScene" uid="uid://eta8btpacjkr" path="res://house_inside.tscn" id="5_heurc"]
+[ext_resource type="PackedScene" uid="uid://eta8btpacjkr" path="res://Maps/house_inside.tscn" id="5_heurc"]
 [ext_resource type="Script" path="res://PotionManager.gd" id="5_rhn3f"]
+[ext_resource type="PackedScene" uid="uid://c0scju3efuurt" path="res://Scenes/fade_to_black.tscn" id="6_e1juy"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_f4c5a")
@@ -15,4 +17,12 @@ script = ExtResource("5_rhn3f")
 
 [node name="HouseInside" parent="." instance=ExtResource("5_heurc")]
 
+[node name="HPBar" parent="." instance=ExtResource("2_jqfa6")]
+
+[node name="FadeToBlack" parent="." instance=ExtResource("6_e1juy")]
+
+[connection signal="respawn" from="." to="Player" method="respawn"]
+[connection signal="reset" from="Player" to="." method="reset"]
 [connection signal="throw_potion" from="Player" to="PotionManager" method="_on_player_throw"]
+[connection signal="took_damage" from="Player" to="HPBar" method="damage_taken"]
+[connection signal="done_fading" from="FadeToBlack" to="." method="_on_fade_to_black_done_fading"]

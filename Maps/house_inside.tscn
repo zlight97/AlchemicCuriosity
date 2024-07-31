@@ -29,6 +29,9 @@ shape = SubResource("RectangleShape2D_movu0")
 [node name="EntryNode0" type="Node2D" parent="."]
 position = Vector2(502, 630)
 
+[node name="EntryNode1" type="Node2D" parent="."]
+position = Vector2(653, 241)
+
 [node name="WallCollisions" type="StaticBody2D" parent="."]
 position = Vector2(200, -200)
 
