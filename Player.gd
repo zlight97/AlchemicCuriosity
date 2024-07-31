@@ -5,7 +5,7 @@ signal took_damage
 signal reset
 
 const START_SPEED = 300.0
-const DASH_COOLDOWN = 2.0
+const DASH_COOLDOWN = .2
 const MAX_HP = 100
 
 var current_hp = MAX_HP
@@ -13,6 +13,7 @@ var speed = START_SPEED
 var dash_cd = DASH_COOLDOWN
 var invulnDuration = 0.5
 var invuln = false
+var inMenu = false
 
 var ingredients = {
 	"lavender":0,
@@ -26,9 +27,6 @@ var interactable = []
 
 var originalModulate = null
 
-func _ready():
-	transporting = false
-
 func process_input():
 	#keyboard input
 	var input_dir = Input.get_vector("left", "right", "up", "down")
@@ -40,7 +38,8 @@ func process_input():
 			canDash = false
 			$"DashTimer".wait_time = dash_cd
 			$"DashTimer".start()
-			
+	if inMenu:
+		return
 	if Input.is_action_just_pressed("use"):
 		if len(interactable) > 0:
 			interactable[0].interact(self)
@@ -98,7 +97,10 @@ func isTransporting():
 func set_choords(charr):
 	position.x = charr[0]
 	position.y = charr[1]
-
+	call_deferred("done_transporting")
+func done_transporting():
+	transporting = false
+	
 func set_camera_bounds(charr):
 	$"PlayerCamera".limit_left = charr[0]
 	$"PlayerCamera".limit_top = charr[1]
@@ -127,11 +129,16 @@ func reset_vars():
 	transporting = false
 	can_throw = true
 	interactable = []
+	inMenu = false
 	$AnimatedSprite2D.animation = "move1"
 	took_damage.emit()
 	
+func win():
+	get_node("/root/DialogueTables").teacher_temp = 1
+	reset.emit()
 	
 func die():
+	get_node("/root/DialogueTables").teacher_temp = 0
 	reset.emit()
 
 func respawn():
@@ -149,7 +156,7 @@ func _on_interact_box_body_entered(body):
 func _on_interact_box_body_exited(body):
 	var i = interactable.find(body)
 	if i>=0:
-		interactable[i].interact_stop()
+		interactable[i].interact_stop(self)
 		interactable.remove_at(i)
 
 
@@ -162,7 +169,7 @@ func _on_interact_box_area_entered(area):
 func _on_interact_box_area_exited(area):
 	var i = interactable.find(area)
 	if i>=0:
-		interactable[i].interact_stop()
+		interactable[i].interact_stop(self)
 		interactable.remove_at(i)
 
 

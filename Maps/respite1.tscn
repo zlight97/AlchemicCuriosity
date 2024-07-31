@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://df2qahcfpc7a8"]
+
+[ext_resource type="TileSet" uid="uid://o02j820f730r" path="res://grass_tiles.tres" id="1_nmq5f"]
+[ext_resource type="PackedScene" uid="uid://bbm52ufo3frol" path="res://crafting_station.tscn" id="2_gbw86"]
+[ext_resource type="PackedScene" uid="uid://c6fjjk1a1xtv4" path="res://herb.tscn" id="3_4tts3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c2d41"]
+size = Vector2(300, 200)
+
+[node name="respite0" type="TileMap"]
+tile_set = ExtResource("1_nmq5f")
+rendering_quadrant_size = 100
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 393216, 0, 65536, 393216, 1, 131072, 393216, 2, 196608, 393216, 3, 262144, 393216, 4, 327680, 393216, 2, 1, 458752, 0, 65537, 458752, 1, 131073, 458752, 2, 196609, 458752, 3, 262145, 458752, 4, 327681, 458752, 2, 2, 524288, 0, 65538, 524288, 1, 131074, 524288, 2, 196610, 524288, 3, 262146, 524288, 4, 327682, 524288, 2, 3, 589824, 0, 65539, 589824, 1, 131075, 589824, 2, 196611, 589824, 3, 262147, 589824, 4, 327683, 589824, 2, 4, 524288, 0, 65540, 524288, 1, 131076, 524288, 2, 196612, 524288, 3, 262148, 524288, 4, 327684, 524288, 2, 5, 589824, 0, 65541, 589824, 1, 131077, 589824, 2, 196613, 589824, 3, 262149, 589824, 4, 327685, 589824, 2, 393216, 393216, 3, 458752, 393216, 4, 524288, 393216, 5, 393217, 458752, 3, 458753, 458752, 4, 524289, 458752, 5, 393218, 524288, 3, 458754, 524288, 4, 524290, 524288, 5, 393219, 589824, 3, 458755, 589824, 4, 524291, 589824, 5, 393220, 524288, 3, 458756, 524288, 4, 524292, 524288, 5, 393221, 589824, 3, 458757, 589824, 4, 524293, 589824, 5, 327686, 524288, 4, 393222, 524288, 3, 458758, 524288, 4, 524294, 524288, 5, 327687, 589824, 4, 393223, 589824, 3, 458759, 589824, 4, 524295, 589824, 5, 6, 524288, 0, 65542, 524288, 1, 131078, 524288, 2, 196614, 524288, 3, 262150, 524288, 4, 7, 589824, 0, 65543, 589824, 1, 131079, 589824, 2, 196615, 589824, 3, 262151, 589824, 4, 393224, 524288, 3, 458760, 524288, 4, 524296, 524288, 5, 393225, 589824, 3, 458761, 589824, 4, 524297, 589824, 5, 393226, 655360, 3, 458762, 655360, 4, 524298, 655360, 5, 393227, 720896, 3, 458763, 720896, 4, 524299, 720896, 5, 65544, 524288, 1, 131080, 524288, 2, 196616, 524288, 3, 262152, 524288, 4, 327688, 524288, 4, 65545, 589824, 1, 131081, 589824, 2, 196617, 589824, 3, 262153, 589824, 4, 327689, 589824, 4, 65546, 655360, 1, 131082, 655360, 2, 196618, 655360, 3, 262154, 655360, 4, 327690, 655360, 4, 65547, 720896, 1, 131083, 720896, 2, 196619, 720896, 3, 262155, 720896, 4, 327691, 720896, 4, 8, 524288, 0, 9, 589824, 0, 10, 655360, 0, 11, 720896, 0)
+layer_1/tile_data = PackedInt32Array(5, 524289, 0, 6, 589825, 0, 65541, 524289, 0, 65542, 589825, 0)
+
+[node name="EntryNode0" type="Node2D" parent="."]
+position = Vector2(600, 800)
+
+[node name="Area2D0" type="Area2D" parent="."]
+position = Vector2(424, -199)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D0"]
+position = Vector2(176, 99)
+shape = SubResource("RectangleShape2D_c2d41")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(200, 0)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(0, 0, 250, -1, 250, -200, 553, -202, 552, -2, 1000, 0, 1000, 900, -200, 900, -200, 0, 0, 0, 0, -400, -400, -400, -400, 1100, 1200, 1100, 1200, -400, 2, -399)
+
+[node name="CraftingStation" parent="." instance=ExtResource("2_gbw86")]
+position = Vector2(589, 454)
+
+[node name="herb0" parent="." instance=ExtResource("3_4tts3")]
+position = Vector2(731, 108)
+
+[node name="herb1" parent="." instance=ExtResource("3_4tts3")]
+position = Vector2(431, 101)
+
+[node name="herb2" parent="." instance=ExtResource("3_4tts3")]
+position = Vector2(1024, 272)
+
+[node name="herb3" parent="." instance=ExtResource("3_4tts3")]
+position = Vector2(260, 227)

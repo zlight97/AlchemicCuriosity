@@ -39,5 +39,5 @@ func interact(player):
 		player.ingredients[herbType] = 1
 	pick()
 
-func interact_stop():
+func interact_stop(player):
 	pass

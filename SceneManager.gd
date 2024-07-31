@@ -1,9 +1,17 @@
 extends Node
 
+var crafting_scene = null
 var current_scene = null
 var dialogue_scene = null
 var player = null
-		
+	
+func _deferred_clear_crafting():
+	# Immediately free the current scene,
+	# there is no risk here.
+	if crafting_scene:
+		crafting_scene.free()
+		crafting_scene = null
+	
 func _deferred_clear_dialogue():
 	# Immediately free the current scene,
 	# there is no risk here.
@@ -19,6 +27,8 @@ func _deferred_move_zone(path,exit_point):
 	current_scene.free()
 
 	# Instance the new scene.
+	print(path)
+	print(exit_point)
 	current_scene = load(path).instantiate()
 	var ch = current_scene.get_entry_choords(exit_point)
 	
@@ -46,6 +56,25 @@ func create_dialogue(dialogue,speaker_name=null,sprite=null,sprite_position=null
 	# Optional, to make it compatible with the SceneTree.change_scene() API.
 	get_tree().set_current_scene(dialogue_scene)
 	
+func create_crafting(inventory):
+	# Load new scene.
+	crafting_scene = preload("res://Scenes/crafting_menu.tscn").instantiate()
+	# Instance the new scene.
+	#dialogue_scene = s.instance()
+	var r = get_node("/root/RecipeTables").craftingRecipe
+	var formatRecipe = []
+	for v in r.keys():
+		formatRecipe.append({"name":v,"ingredients":r[v]})
+	var data = {"stock":inventory,"recipe":formatRecipe}
+	crafting_scene._populate_button_list(data)
+	# Add it to the active scene, as child of root.
+	get_tree().get_root().add_child(crafting_scene)
+
+	# Optional, to make it compatible with the SceneTree.change_scene() API.
+	get_tree().set_current_scene(crafting_scene)
+	
+
+
 func goto_scene(path):
 	# This function will usually be called from a signal callback,
 	# or some other function from the running scene.
@@ -76,6 +105,9 @@ func _deferred_goto_scene(path):
 	# Optional, to make it compatible with the SceneTree.change_scene() API.
 	get_tree().set_current_scene(current_scene)
 
+func clear_crafting():
+	call_deferred("_deferred_clear_crafting")
+	
 func clear_dialogue():
 	call_deferred("_deferred_clear_dialogue")
 	

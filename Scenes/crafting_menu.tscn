@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://coihachr7tu32"]
+
+[ext_resource type="Script" path="res://Scenes/crafting_menu.gd" id="1_0lx8c"]
+
+[node name="Canvas" type="CanvasLayer"]
+script = ExtResource("1_0lx8c")
+
+[node name="CraftingMenu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 896.0
+offset_right = 1149.0
+offset_bottom = 643.0
+
+[node name="ButtonContainer" type="Panel" parent="CraftingMenu"]
+layout_mode = 0
+offset_left = -141.0
+offset_top = 6.0
+offset_right = 251.0
+offset_bottom = 645.0
+
+[node name="ButtonList" type="VBoxContainer" parent="CraftingMenu/ButtonContainer"]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 26.0
+offset_right = 360.0
+offset_bottom = 650.0

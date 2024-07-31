@@ -1,0 +1,62 @@
+[gd_scene load_steps=5 format=3 uid="uid://bs8hnqlxbcu1c"]
+
+[ext_resource type="TileSet" uid="uid://o02j820f730r" path="res://grass_tiles.tres" id="1_su7vt"]
+[ext_resource type="Script" path="res://world.gd" id="1_v6xei"]
+[ext_resource type="PackedScene" uid="uid://c6fjjk1a1xtv4" path="res://herb.tscn" id="3_jbqej"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yocrf"]
+size = Vector2(200, 200)
+
+[node name="small_farm" type="TileMap"]
+tile_set = ExtResource("1_su7vt")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 393216, 0, 65536, 393216, 1, 131072, 393216, 2, 196608, 393216, 3, 262144, 393216, 4, 327680, 393216, 5, 1, 393216, 0, 65537, 393216, 1, 131073, 393216, 2, 196609, 393216, 3, 262145, 393216, 4, 327681, 393216, 5, 2, 393216, 0, 65538, 393216, 1, 131074, 393216, 2, 196610, 393216, 3, 262146, 393216, 4, 327682, 393216, 5, 3, 393216, 0, 65539, 393216, 1, 131075, 393216, 2, 196611, 393216, 3, 262147, 393216, 4, 327683, 393216, 5, 4, 393216, 0, 65540, 393216, 1, 131076, 393216, 2, 196612, 393216, 3, 262148, 393216, 4, 327684, 393216, 5, 5, 393216, 0, 65541, 393216, 1, 131077, 393216, 2, 196613, 393216, 3, 262149, 393216, 4, 327685, 393216, 5, 6, 458752, 0, 65542, 458752, 1, 131078, 458752, 2, 196614, 458752, 3, 262150, 458752, 4, 327686, 458752, 5, 7, 524288, 0, 65543, 524288, 1, 131079, 524288, 2, 196615, 524288, 3, 262151, 524288, 4, 327687, 524288, 5, 8, 589824, 0, 65544, 589824, 1, 131080, 589824, 2, 196616, 589824, 3, 262152, 589824, 4, 327688, 589824, 5, 9, 655360, 0, 65545, 655360, 1, 131081, 655360, 2, 196617, 655360, 3, 262153, 655360, 4, 327689, 655360, 5, 10, 720896, 0, 65546, 720896, 1, 131082, 720896, 2, 196618, 720896, 3, 262154, 720896, 4, 327690, 720896, 5, 393216, 65536, 4, 393217, 131072, 4, 393218, 196608, 4, 393219, 262144, 4, 393220, 65536, 4, 393221, 131072, 4, 393222, 196608, 4, 393223, 262144, 4, 393224, 65536, 4, 393225, 131072, 4, 393226, 196608, 4, 393227, 262144, 4, 131083, 262144, 3, 196619, 262144, 4, 262155, 262144, 2, 327691, 262144, 3, 11, 262144, 1, 65547, 262144, 2)
+layer_1/tile_data = PackedInt32Array(1, 524289, 0, 2, 589825, 0, 327683, 655362, 0, 393219, 655362, 1, 65542, 655362, 0, 131078, 655362, 1, 196615, 655362, 0, 262151, 655362, 1)
+script = ExtResource("1_v6xei")
+
+[node name="EntryNode0" type="Node2D" parent="."]
+position = Vector2(187, 141)
+
+[node name="Area2D0" type="Area2D" parent="."]
+position = Vector2(106, -197)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D0"]
+position = Vector2(94, 97)
+shape = SubResource("RectangleShape2D_yocrf")
+
+[node name="herb0" parent="." instance=ExtResource("3_jbqej")]
+position = Vector2(90, 240)
+
+[node name="herb1" parent="." instance=ExtResource("3_jbqej")]
+position = Vector2(195, 240)
+
+[node name="herb2" parent="." instance=ExtResource("3_jbqej")]
+position = Vector2(98, 507)
+
+[node name="herb3" parent="." instance=ExtResource("3_jbqej")]
+position = Vector2(92, 419)
+
+[node name="herb4" parent="." instance=ExtResource("3_jbqej")]
+position = Vector2(92, 324)
+
+[node name="herb5" parent="." instance=ExtResource("3_jbqej")]
+position = Vector2(200, 326)
+
+[node name="herb6" parent="." instance=ExtResource("3_jbqej")]
+position = Vector2(378, 293)
+
+[node name="herb7" parent="." instance=ExtResource("3_jbqej")]
+position = Vector2(999, 123)
+
+[node name="herb8" parent="." instance=ExtResource("3_jbqej")]
+position = Vector2(1005, 504)
+
+[node name="herb9" parent="." instance=ExtResource("3_jbqej")]
+position = Vector2(767, 347)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(0, 0, 0, 5, 0, 700, 1200, 700, 1200, 0, 300, 0, 300, -200, 100, -200, 100, 0, 0, 0, 0, -400, 1400, -400, 1400, 900, -200, 900, -200, -400, -1, -400)
+
+[connection signal="body_entered" from="Area2D0" to="." method="_on_area_2d_body_entered" binds= [0]]

@@ -20,6 +20,8 @@ config/icon="res://icon.svg"
 SceneManager="*res://SceneManager.gd"
 MapTables="*res://map_tables.gd"
 HerbTables="*res://herb_tables.gd"
+RecipeTables="*res://recipe_tables.gd"
+DialogueTables="*res://dialogue_tables.gd"
 
 [display]
 

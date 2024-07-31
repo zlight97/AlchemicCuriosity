@@ -4,6 +4,7 @@ var idle = true
 var dir = 2
 var talking = true
 const SPEED = 100.0
+const SKIP_DIALOGUE = [1]
 
 func _physics_process(delta):
 	move_and_slide()
@@ -30,6 +31,10 @@ func _on_idle_move_timer_timeout():
 		$IdleMoveTimer.wait_time = randf() * 10
 	$IdleMoveTimer.start()
 
+func onDialogueComplete():
+	if get_node("/root/DialogueTables").teacher_state not in SKIP_DIALOGUE:
+		get_node("/root/DialogueTables").teacher_state += 1
+
 func talk():
 	idle = true
 	talking = true
@@ -37,14 +42,18 @@ func talk():
 	velocity.y = 0
 	$AnimatedSprite2D.animation = "idle2"
 	$IdleMoveTimer.stop()
-	var dialogueList = ["testdialoguetestdi\naloguetestdialogue","testdial12341234oguetestdialoguetestdialogue","testdialoguetestdialoguetestdialogue1234"]
+	var dialogueList = get_node("/root/DialogueTables").get_dialogue("teacher")
 	get_node("/root/SceneManager").create_dialogue(dialogueList, "Teacher", "res://assets/images/sprites/teacher_sprite/teacher_dialogue.tres")
+	#TODO need a better way to catch dialogue complete, if someone walks away this will mark it as complete
+	onDialogueComplete()
 
 func interact(player):
 	talk()
+	player.inMenu = true
 
-func interact_stop():
+func interact_stop(player):
 	if talking:
 		talking = false
 		$IdleMoveTimer.start()
 		get_node("/root/SceneManager").clear_dialogue()
+		player.inMenu = false

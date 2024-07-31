@@ -7,6 +7,36 @@ const herbTables = {#weight (cumulative), name
 	"HouseOutside" : [100, "lavender",
 					105, "celestial",
 					120,  "none"],
+	"small_farm":	[
+					100, "lavender",
+					102, "celestial"
+	],"tallgrass0":	[
+					100, "lavender",
+					102, "celestial"
+	],"tallgrass1":	[
+					100, "lavender",
+					110, "celestial"
+	],"tallgrass2":	[
+					100, "lavender",
+					115, "celestial"
+	],"respite0":	[
+					10, "lavender",
+					115, "celestial"
+	],"respite1":	[
+					10, "lavender",
+					115, "celestial"
+	],"turn0":	[
+					100, "lavender",
+					140, "celestial",
+					150,"none"
+	],"turn1":	[
+					100, "lavender",
+					140, "celestial",
+					145,"none"
+	],"turn2":	[
+					100, "lavender",
+					160, "celestial"
+	],
 }
 
 const spriteChart = {
