@@ -9,6 +9,7 @@ var momentum: Vector2
 var momentum_scale = .6
 var broken = false
 var damage = 25
+var effect = []
 	
 func _physics_process(delta):
 	position += speed * (direction + momentum.normalized()*momentum_scale) * delta
@@ -26,10 +27,11 @@ func _on_body_entered(body):
 		if body.has_method("damage"):
 			body.damage(damage)
 		if body.has_method("apply_effect"):
-			body.apply_effect()
+			body.apply_effect(effect)
 
 func break_potion():
 	broken = true
+	splash_ground()
 	speed = 0
 	$AnimatedSprite2D.animation = "break"
 	$AnimatedSprite2D.play()
@@ -42,5 +44,4 @@ func _on_animated_sprite_2d_animation_finished():
 	if not broken:
 		break_potion()
 		return
-	splash_ground()
 	queue_free()

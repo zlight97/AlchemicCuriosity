@@ -7,6 +7,7 @@ var speed: float = 400.0
 var broken = false
 var damage = 5
 var ttl = 1.0
+var effect = []
 
 func init():
 	pass
@@ -38,7 +39,7 @@ func _on_body_entered(body):
 		hit()
 	if body.name == "Player":
 		body.damage(damage)
-		body.apply_effect()
+		body.apply_effect(effect)
 
 func hit():
 	broken = true

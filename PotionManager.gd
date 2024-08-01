@@ -4,7 +4,9 @@ extends Node2D
 
 const potion_script_map = {
 	"thrown_potion":"res://thrown_potion.gd",
-	"red_potion":"res://red_potion.gd"
+	"red_potion":"res://red_potion.gd",
+	"poison_potion":"res://poison_potion.gd",
+	"shadow_potion":"res://shadow_potion.gd"
 }
 
 func _on_player_throw(potName, pos, dest, charSpeed):

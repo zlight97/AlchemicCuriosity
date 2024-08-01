@@ -2,6 +2,7 @@ extends enemy
 
 func init():
 	MAX_HP = 150
+	current_hp = MAX_HP
 	MAX_DAMAGE = 12
 	MAX_SPEED = 150
 	attackCooldown = 3

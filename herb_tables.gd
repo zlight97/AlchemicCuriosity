@@ -36,7 +36,9 @@ const herbTables = {#weight (cumulative), name
 	],"turn2":	[
 					100, "lavender",
 					160, "celestial"
-	],
+	],"boss": [
+					100, "none"
+	]
 }
 
 const spriteChart = {

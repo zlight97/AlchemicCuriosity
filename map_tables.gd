@@ -10,6 +10,7 @@ const HouseOutside = [
 ]
 
 const HouseInside = [
+	
 	["res://Maps/house_outside.tscn",1]
 ]
 
@@ -65,6 +66,7 @@ const cameraBounds = {
 	"turn0":[0,0,2400,1700],
 	"turn1":[0,400,2400,2100],
 	"turn2":[0,0,2400,1700],
+	"boss":[0,0,1200,700],
 }
 
 func get_map_dest(entry_name, entry_loc):

@@ -15,6 +15,5 @@ func _process(delta):
 
 func stop():
 	done_fading.emit()
-	print($Polygon2D.get_color())
 	$Polygon2D.set_color(Color(1,0,0,0))
 	fading = false

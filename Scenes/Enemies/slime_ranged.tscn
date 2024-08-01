@@ -42,3 +42,5 @@ debug_color = Color(0.988235, 0, 0, 0.419608)
 [node name="AttackCD" type="Timer" parent="."]
 
 [node name="InvulnTimer" type="Timer" parent="."]
+
+[node name="PoisonTimer" type="Timer" parent="."]

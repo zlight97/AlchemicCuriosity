@@ -25,6 +25,9 @@ var invulnTime = .5
 var attackCooldown = 4.0
 var canAttack = true
 
+var poison_counter = 10
+var poison_dmg = 0
+var originalModulate = null
 func init():
 	pass
 
@@ -37,6 +40,7 @@ func _ready():
 	$AttackCD.timeout.connect(attack_cd)
 	$InvulnTimer.timeout.connect(invuln_timer)
 	$Sprite.animation_looped.connect(sprite_animation_done)
+	$PoisonTimer.timeout.connect(poison_tick)
 
 func damage(amount_hit):
 	if alive:
@@ -50,9 +54,26 @@ func damage(amount_hit):
 		if current_hp <= 0:
 			die()
 #Dunno how this will work yet, but for applying statuses
-func apply_effect():
-	pass
+func apply_effect(effect):
+	for i in range(len(effect)):
+		if i%2:
+			if effect[i] == "poison":
+				apply_poison(effect[i-1])
 
+func apply_poison(amount):
+	if poison_counter >= 10:
+		originalModulate = modulate
+		modulate = Color.SEA_GREEN
+	poison_counter = 0
+	poison_dmg = amount/10
+	$PoisonTimer.wait_time = 5
+	$PoisonTimer.start()
+func poison_tick():
+	poison_counter += 1
+	damage(poison_dmg)
+	if poison_counter >= 10:
+		$PoisonTimer.stop()
+		modulate = originalModulate
 func is_busy():
 	return !alive or attacking or invuln
 

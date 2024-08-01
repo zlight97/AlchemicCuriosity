@@ -7,7 +7,6 @@ var pressed = preload("res://assets/buttons/pressed_button.tres")
 var hover = preload("res://assets/buttons/hover_button.tres")
 var disabled = preload("res://assets/buttons/disabled_button.tres")
 
-
 func _populate_button_list(data):
 	for item in data["recipe"]:
 		var ingStr = ""
@@ -41,5 +40,8 @@ func _populate_button_list(data):
 		$CraftingMenu/ButtonContainer/ButtonList.add_child(button)
 
 func button_pressed(item):
-	print(item)
+	var player = get_node("/root/SceneManager").player
 	item_crafted.emit(item)
+	player.item_crafted(item)
+	get_node("/root/SceneManager").create_crafting(player.ingredients)
+	queue_free()

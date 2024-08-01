@@ -27,8 +27,6 @@ func _deferred_move_zone(path,exit_point):
 	current_scene.free()
 
 	# Instance the new scene.
-	print(path)
-	print(exit_point)
 	current_scene = load(path).instantiate()
 	var ch = current_scene.get_entry_choords(exit_point)
 	

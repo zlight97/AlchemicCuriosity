@@ -16,8 +16,16 @@ var invuln = false
 var inMenu = false
 
 var ingredients = {
-	"lavender":0,
-	"celestial":0,
+	"lavender":5,
+	"celestial":5,
+	"snake_fang":5,
+	"snake_scale":5
+}
+
+var potions = {
+	"health":0,
+	"shadow":0,
+	"poison":0
 }
 
 var canDash = true
@@ -27,33 +35,57 @@ var interactable = []
 
 var originalModulate = null
 
+var shadow_loc = null
+
+func item_crafted(item):
+	var itemname = item["name"]
+	var mats = item["ingredients"]
+	var amount = get_node("/root/RecipeTables").craftingAmount[itemname]
+	potions[itemname] += amount
+	
+	for i in range(len(mats)):
+		if i % 2 == 1:
+			ingredients[mats[i]] = ingredients[mats[i]] - mats[i-1]
+
 func process_input():
 	#keyboard input
 	var input_dir = Input.get_vector("left", "right", "up", "down")
 	velocity = input_dir.normalized() * speed
 	if Input.is_action_pressed("dash"):
-		if canDash:
-			$PlayerCamera.position_smoothing_enabled = true
-			position = position + (input_dir.normalized()*500)
+		if canDash and can_throw and potions["shadow"] > 0:
+			potions["shadow"] = potions["shadow"] -1
+			var dest = get_global_mouse_position()
+			throw_potion.emit("shadow_potion",position, dest, velocity)
+			$ThrowTimer.start()
+			can_throw = false
 			canDash = false
-			$"DashTimer".wait_time = dash_cd
+		elif !canDash and shadow_loc:
+			position = shadow_loc
+			shadow_loc = null
+			$PlayerCamera.position_smoothing_enabled = true
+			$"DashTimer".wait_time = .5
 			$"DashTimer".start()
 	if inMenu:
 		return
 	if Input.is_action_just_pressed("use"):
 		if len(interactable) > 0:
 			interactable[0].interact(self)
-	
+	if Input.is_action_just_pressed("heal"):
+		if MAX_HP > current_hp and potions["health"] > 0:
+			current_hp = MAX_HP
+			potions["health"] = potions["health"] -1
+			took_damage.emit()
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and can_throw:
 		var dest = get_global_mouse_position()
 		#TODO make pot choosing dynamic / picked somehow
 		throw_potion.emit("thrown_potion",position, dest, velocity)
 		can_throw = false
 		$ThrowTimer.start()
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT) and can_throw:
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT) and can_throw and potions["poison"] > 0:
+		potions["poison"] = potions["poison"] -1
 		var dest = get_global_mouse_position()
 		#TODO make pot choosing dynamic / picked somehow
-		throw_potion.emit("red_potion",position, dest, velocity)
+		throw_potion.emit("poison_potion",position, dest, velocity)
 		can_throw = false
 		$ThrowTimer.start()
 
@@ -80,7 +112,7 @@ func _physics_process(delta):
 		$AnimatedSprite2D.frame = 1
 
 #TBD how this works
-func apply_effect():
+func apply_effect(effect):
 	pass
 
 func _on_dash_timer_timeout():
@@ -97,6 +129,8 @@ func isTransporting():
 func set_choords(charr):
 	position.x = charr[0]
 	position.y = charr[1]
+	shadow_loc = null
+	canDash = true
 	call_deferred("done_transporting")
 func done_transporting():
 	transporting = false
@@ -130,6 +164,7 @@ func reset_vars():
 	can_throw = true
 	interactable = []
 	inMenu = false
+	shadow_loc = null
 	$AnimatedSprite2D.animation = "move1"
 	took_damage.emit()
 	
