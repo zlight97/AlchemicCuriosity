@@ -10,8 +10,8 @@ var sprite = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$ContentText.text = dialogue[page]
-	$ContentText.visible_ratio = 0
+	$"textSprite/ContentText".text = dialogue[page]
+	$"textSprite/ContentText".visible_ratio = 0
 	setSpeakerName(speaker_name)
 	$"ScrollTimer".start()
 	setupSprite()
@@ -19,9 +19,8 @@ func _ready():
 
 func setSpeakerName(sname):
 	if sname:
-		$"NameLabel".text = sname
-		$"Nameplate".show()
-		$"NameLabel".show()
+		$"textSprite/nameplate/NameLabel".text = "[center][b]" + sname + "[/b][/center]"
+		$"textSprite/nameplate".show()
 
 func setupSprite():
 	if m_sprite:
@@ -29,8 +28,10 @@ func setupSprite():
 			m_sprite = load(m_sprite)
 			if not spriteLoc or 'r' in spriteLoc.to_lower():
 				sprite = $SpriteR
+				$textSprite.position.x = 390
 			elif 'l' in spriteLoc.to_lower():
 				sprite = $SpriteL
+				$textSprite.position.x = 765
 			sprite.sprite_frames = m_sprite
 			sprite.show()
 			sprite.animation = "talking"
@@ -46,8 +47,8 @@ func newDialogue(dialogue_list: Array, person_name, sprite, sprite_pos):
 func nextPage():
 	if page+1 < len(dialogue):
 		page+=1
-		$ContentText.text=dialogue[page]
-		$ContentText.visible_ratio=0
+		$"textSprite/ContentText".text=dialogue[page]
+		$"textSprite/ContentText".visible_ratio=0
 		sprite.animation = "talking"
 		sprite.play()
 	else:
@@ -56,21 +57,22 @@ func nextPage():
 func endDialogue():
 	$"ScrollTimer".stop()
 	hide()
+	get_node("/root/SceneManager").clear_dialogue()
 
 func _input(event):
 	if event.is_pressed() and (Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) or Input.is_key_pressed(KEY_SPACE)):
-		if $ContentText.visible_ratio < 1:
-			$ContentText.visible_ratio = 1
+		if $"textSprite/ContentText".visible_ratio < 1:
+			$"textSprite/ContentText".visible_ratio = 1
 			sprite.animation = "normal"
 			sprite.play()
 		else:
 			nextPage()
 
 func _on_scroll_timer_timeout():
-	if $ContentText.visible_ratio < 1:
-		$ContentText.visible_ratio+=scrollSpeed
-	elif $ContentText.visible_ratio >=1:
-		$ContentText.visible_ratio = 1
+	if $"textSprite/ContentText".visible_ratio < 1:
+		$"textSprite/ContentText".visible_ratio+=scrollSpeed
+	elif $"textSprite/ContentText".visible_ratio >=1:
+		$"textSprite/ContentText".visible_ratio = 1
 		sprite.animation = "normal"
 		sprite.play()
 		

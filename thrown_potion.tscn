@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cjoo2x5eh6k1u"]
 
-[ext_resource type="SpriteFrames" uid="uid://dgq41o1nmma3e" path="res://assets/images/potion/thrown_potion.tres" id="1_lnqeu"]
+[ext_resource type="SpriteFrames" uid="uid://dgq41o1nmma3e" path="res://assets/images/potion/blue/thrown_potion.tres" id="1_lnqeu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hgrkt"]
 radius = 42.19

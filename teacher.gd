@@ -50,6 +50,7 @@ func talk():
 func interact(player):
 	talk()
 	player.inMenu = true
+	return true
 
 func interact_stop(player):
 	if talking:

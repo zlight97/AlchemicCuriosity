@@ -1,0 +1,59 @@
+[gd_resource type="SpriteFrames" load_steps=12 format=3 uid="uid://dgq41o1nmma3e"]
+
+[ext_resource type="Texture2D" uid="uid://cgu34j0oiy5qy" path="res://assets/images/potion/blue/potion7.png" id="1_8te0x"]
+[ext_resource type="Texture2D" uid="uid://cfkn0f1oa05md" path="res://assets/images/potion/blue/potion8.png" id="2_4lecy"]
+[ext_resource type="Texture2D" uid="uid://cftvbuqh8edh5" path="res://assets/images/potion/blue/potion9.png" id="3_m4lxm"]
+[ext_resource type="Texture2D" uid="uid://cib8neo6g5xyw" path="res://assets/images/potion/blue/potion10.png" id="4_w3701"]
+[ext_resource type="Texture2D" uid="uid://banr25gn0k6wi" path="res://assets/images/potion/blue/potion0.png" id="5_a8638"]
+[ext_resource type="Texture2D" uid="uid://vf6bkeb0h3xl" path="res://assets/images/potion/blue/potion1.png" id="6_8tedk"]
+[ext_resource type="Texture2D" uid="uid://cj0l4gaaqnyvj" path="res://assets/images/potion/blue/potion2.png" id="7_5kxlk"]
+[ext_resource type="Texture2D" uid="uid://dcuugja68qwd3" path="res://assets/images/potion/blue/potion3.png" id="8_sxt64"]
+[ext_resource type="Texture2D" uid="uid://d1nxoh4yoqke0" path="res://assets/images/potion/blue/potion4.png" id="9_3lar8"]
+[ext_resource type="Texture2D" uid="uid://7bem5wqxm448" path="res://assets/images/potion/blue/potion5.png" id="10_c0r1b"]
+[ext_resource type="Texture2D" uid="uid://djxtg6mg3vp3q" path="res://assets/images/potion/blue/potion6.png" id="11_i57wn"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_8te0x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_4lecy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_m4lxm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_w3701")
+}],
+"loop": false,
+"name": &"break",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_a8638")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_8tedk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_5kxlk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_sxt64")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_3lar8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_c0r1b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_i57wn")
+}],
+"loop": false,
+"name": &"thrown",
+"speed": 5.0
+}]

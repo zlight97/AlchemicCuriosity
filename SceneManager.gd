@@ -24,7 +24,8 @@ func move_zone(from_name,entry_point=0):
 	call_deferred("_deferred_move_zone", path[0], path[1])
 	
 func _deferred_move_zone(path,exit_point):
-	current_scene.free()
+	if current_scene:
+		current_scene.free()
 
 	# Instance the new scene.
 	current_scene = load(path).instantiate()
@@ -44,7 +45,7 @@ func _deferred_move_zone(path,exit_point):
 	
 func create_dialogue(dialogue,speaker_name=null,sprite=null,sprite_position=null):
 	# Load new scene.
-	dialogue_scene = preload("res://DialogueBox.tscn").instantiate()
+	dialogue_scene = preload("res://Scenes/DialogueBox.tscn").instantiate()
 	# Instance the new scene.
 	#dialogue_scene = s.instance()
 	dialogue_scene.newDialogue(dialogue,speaker_name,sprite,sprite_position)
@@ -89,7 +90,8 @@ func goto_scene(path):
 func _deferred_goto_scene(path):
 	# Immediately free the current scene,
 	# there is no risk here.
-	current_scene.free()
+	if current_scene:
+		current_scene.free()
 
 	# Load new scene.
 	var s = load(path).instantiate()

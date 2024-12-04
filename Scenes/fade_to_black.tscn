@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://Scenes/fade_to_black.gd" id="1_wq6x2"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_wq6x2")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]

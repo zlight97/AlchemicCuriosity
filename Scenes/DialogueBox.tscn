@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://b7gkw0jwt6e6l"]
+
+[ext_resource type="Script" path="res://Scenes/DialogueBox.gd" id="1_4h37p"]
+[ext_resource type="SpriteFrames" uid="uid://dq384sj1mh1d7" path="res://assets/images/sprites/teacher_sprite/teacher_dialogue.tres" id="2_n06l5"]
+[ext_resource type="Texture2D" uid="uid://bvbvwhv8a77cs" path="res://assets/images/dialogue/long_dialogue.png" id="3_njpcg"]
+[ext_resource type="Texture2D" uid="uid://c77r2cep3eqti" path="res://assets/images/dialogue/nameplate.png" id="4_od2r8"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_4h37p")
+
+[node name="SpriteR" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(974, 466)
+scale = Vector2(0.606667, 0.606667)
+sprite_frames = ExtResource("2_n06l5")
+animation = &"talking"
+
+[node name="SpriteL" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(232.793, 484)
+scale = Vector2(0.557356, 0.557356)
+sprite_frames = ExtResource("2_n06l5")
+animation = &"normal"
+
+[node name="textSprite" type="Sprite2D" parent="."]
+position = Vector2(765, 510)
+scale = Vector2(0.691326, 0.691327)
+texture = ExtResource("3_njpcg")
+
+[node name="ContentText" type="RichTextLabel" parent="textSprite"]
+offset_left = -438.0
+offset_top = -33.0
+offset_right = 450.0
+offset_bottom = 80.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+
+[node name="nameplate" type="Sprite2D" parent="textSprite"]
+position = Vector2(0, -179.365)
+texture = ExtResource("4_od2r8")
+
+[node name="NameLabel" type="RichTextLabel" parent="textSprite/nameplate"]
+offset_left = -137.0
+offset_top = -12.0
+offset_right = 142.0
+offset_bottom = 20.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+fit_content = true
+
+[node name="ScrollTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="ScrollTimer" to="." method="_on_scroll_timer_timeout"]

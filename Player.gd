@@ -3,6 +3,7 @@ extends CharacterBody2D
 signal throw_potion
 signal took_damage
 signal reset
+signal transition
 
 const START_SPEED = 300.0
 const DASH_COOLDOWN = .2
@@ -66,7 +67,10 @@ func process_input():
 			$"DashTimer".wait_time = .5
 			$"DashTimer".start()
 	if inMenu:
-		return
+		if not get_node("/root/SceneManager").dialogue_scene and  not get_node("/root/SceneManager").crafting_scene:
+			inMenu = false
+		else:
+			return
 	if Input.is_action_just_pressed("use"):
 		if len(interactable) > 0:
 			interactable[0].interact(self)
@@ -119,10 +123,11 @@ func _on_dash_timer_timeout():
 	canDash = true
 	$PlayerCamera.position_smoothing_enabled = false
 
-func isTransporting():
+func isTransporting(zon, id):
 	if transporting:
 		return true
 	else:
+		transition.emit(zon, id)
 		transporting = true
 		return false
 
@@ -133,7 +138,7 @@ func set_choords(charr):
 	canDash = true
 	call_deferred("done_transporting")
 func done_transporting():
-	transporting = false
+	$TransitTimer.start()
 	
 func set_camera_bounds(charr):
 	$"PlayerCamera".limit_left = charr[0]
@@ -179,6 +184,14 @@ func die():
 func respawn():
 	reset_vars()
 
+func remove_interact(object):
+	var i = interactable.find(object)
+	if i>=0:
+		interactable[i].interact_stop(self)
+		interactable.remove_at(i)
+		if len(interactable) == 0:
+			$useDialogue.hide()
+
 func _on_throw_timer_timeout():
 	can_throw = true
 
@@ -186,28 +199,27 @@ func _on_throw_timer_timeout():
 func _on_interact_box_body_entered(body):
 	if body.has_method("interact"):
 		interactable.append(body)
-
+		$useDialogue.show()
 
 func _on_interact_box_body_exited(body):
-	var i = interactable.find(body)
-	if i>=0:
-		interactable[i].interact_stop(self)
-		interactable.remove_at(i)
+	remove_interact(body)
 
 
 func _on_interact_box_area_entered(area):
 	if area.has_method("interact"):
 		interactable.append(area)
+		$useDialogue.show()
 		
 
 
 func _on_interact_box_area_exited(area):
-	var i = interactable.find(area)
-	if i>=0:
-		interactable[i].interact_stop(self)
-		interactable.remove_at(i)
+	remove_interact(area)
 
 
 func _on_invuln_timer_timeout():
 	invuln = false
 	modulate = originalModulate
+
+
+func _on_transit_timer_timeout() -> void:
+	transporting = false

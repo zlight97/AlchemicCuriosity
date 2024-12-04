@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dtmv08othqcjc"]
 
 [ext_resource type="TileSet" uid="uid://o02j820f730r" path="res://grass_tiles.tres" id="1_nmq5f"]
-[ext_resource type="PackedScene" uid="uid://bbm52ufo3frol" path="res://crafting_station.tscn" id="2_gbw86"]
+[ext_resource type="PackedScene" uid="uid://bbm52ufo3frol" path="res://Scenes/crafting_station.tscn" id="2_gbw86"]
 [ext_resource type="Script" path="res://world.gd" id="2_v1aft"]
 [ext_resource type="PackedScene" uid="uid://c6fjjk1a1xtv4" path="res://herb.tscn" id="3_4tts3"]
 

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://world.gd" id="1_nltg6"]
 [ext_resource type="TileSet" uid="uid://qgyba350jh37" path="res://assets/images/tiles/house/house_inside.tres" id="1_ykk40"]
 [ext_resource type="PackedScene" uid="uid://cutxmkv4eythd" path="res://teacher.tscn" id="3_367rd"]
-[ext_resource type="PackedScene" uid="uid://bbm52ufo3frol" path="res://crafting_station.tscn" id="4_w43oy"]
+[ext_resource type="PackedScene" uid="uid://bbm52ufo3frol" path="res://Scenes/crafting_station.tscn" id="4_w43oy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_movu0"]
 size = Vector2(278, 194)

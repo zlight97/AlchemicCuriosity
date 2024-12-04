@@ -1,12 +1,12 @@
 [gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://ca2p4xxtu5v7t"]
 
-[ext_resource type="Texture2D" uid="uid://c5f2718ipj0qe" path="res://assets/images/potion/purple/Untitled168_20240729232916.png" id="1_m2itn"]
-[ext_resource type="Texture2D" uid="uid://cowedpb6x2q6w" path="res://assets/images/potion/purple/Untitled168_20240729232921.png" id="2_rq3v7"]
-[ext_resource type="Texture2D" uid="uid://k65bm13ofq6y" path="res://assets/images/potion/purple/Untitled168_20240729232928.png" id="3_ta2sq"]
-[ext_resource type="Texture2D" uid="uid://b7ufishug72cy" path="res://assets/images/potion/purple/Untitled168_20240729232854.png" id="4_7q8vw"]
-[ext_resource type="Texture2D" uid="uid://bc7q2g8s4sr7y" path="res://assets/images/potion/purple/Untitled168_20240729232858.png" id="5_ud68e"]
-[ext_resource type="Texture2D" uid="uid://2sp45a3abdsc" path="res://assets/images/potion/purple/Untitled168_20240729232906.png" id="6_ohsh8"]
-[ext_resource type="Texture2D" uid="uid://dbi36r5l524gx" path="res://assets/images/potion/purple/Untitled168_20240729232911.png" id="7_bbqkx"]
+[ext_resource type="Texture2D" uid="uid://c5f2718ipj0qe" path="res://assets/images/potion/purple/purpleBreak1.png" id="1_m2itn"]
+[ext_resource type="Texture2D" uid="uid://cowedpb6x2q6w" path="res://assets/images/potion/purple/purpleBreak2.png" id="2_rq3v7"]
+[ext_resource type="Texture2D" uid="uid://k65bm13ofq6y" path="res://assets/images/potion/purple/purpleBreak3.png" id="3_ta2sq"]
+[ext_resource type="Texture2D" uid="uid://b7ufishug72cy" path="res://assets/images/potion/purple/purple0.png" id="4_7q8vw"]
+[ext_resource type="Texture2D" uid="uid://bc7q2g8s4sr7y" path="res://assets/images/potion/purple/purple1.png" id="5_ud68e"]
+[ext_resource type="Texture2D" uid="uid://2sp45a3abdsc" path="res://assets/images/potion/purple/purple2.png" id="6_ohsh8"]
+[ext_resource type="Texture2D" uid="uid://dbi36r5l524gx" path="res://assets/images/potion/purple/purple3.png" id="7_bbqkx"]
 
 [resource]
 animations = [{
