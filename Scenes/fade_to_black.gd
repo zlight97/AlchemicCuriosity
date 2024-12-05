@@ -11,7 +11,7 @@ func start(time: float) -> void:
 
 func _process(delta) -> void:
 	if fading:
-		$Polygon2D.set_color(lerp($Polygon2D.get_color(), Color(0,0,0,1), (1/$Timer.wait_time) * delta*2))
+		$Polygon2D.set_color(lerp($Polygon2D.get_color(), Color(0,0,0,1), (3/$Timer.wait_time) * delta*2))
 		if $Timer.is_stopped():
 			$Timer.start()
 

@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://ctcadyx1x3tvh"]
+[gd_scene load_steps=8 format=3 uid="uid://ctcadyx1x3tvh"]
 
 [ext_resource type="Script" path="res://Scenes/Enemies/slime_boss.gd" id="1_nrf8g"]
 [ext_resource type="SpriteFrames" uid="uid://brwvjtvdldllg" path="res://assets/images/sprites/slime.tres" id="2_dajst"]
+[ext_resource type="PackedScene" uid="uid://eym1rxfglttb" path="res://assets/templates/PitchAudioStreamPlayer.tscn" id="3_r3gib"]
+[ext_resource type="AudioStream" uid="uid://0wjytu0d2wvc" path="res://assets/sounds/enemy/slime_move.mp3" id="4_jnesh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_74wof"]
 radius = 77.0065
@@ -27,6 +29,9 @@ frame_progress = 0.00457288
 position = Vector2(2, 33)
 shape = SubResource("CircleShape2D_74wof")
 
+[node name="PitchAudioStreamPlayer" parent="." instance=ExtResource("3_r3gib")]
+stream = ExtResource("4_jnesh")
+
 [node name="Detection" type="Area2D" parent="."]
 
 [node name="DetectionZone" type="CollisionShape2D" parent="Detection"]
@@ -45,3 +50,8 @@ debug_color = Color(0.988235, 0, 0, 0.419608)
 [node name="InvulnTimer" type="Timer" parent="."]
 
 [node name="PoisonTimer" type="Timer" parent="."]
+
+[node name="AnimationChangeTimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="DirTimer" type="Timer" parent="."]

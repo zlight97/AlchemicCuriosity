@@ -1,6 +1,7 @@
 extends enemy 
 
 func init():
+	$PitchAudioStreamPlayer.set_pitches(.95, 1.1, .05)
 	MAX_HP = 150
 	current_hp = MAX_HP
 	MAX_DAMAGE = 12
@@ -58,6 +59,10 @@ func attack():
 		canAttack = false
 		$AttackCD.wait_time = attackCooldown
 		$AttackCD.start()
-		$Sprite.animation = "attack"
-		$Sprite.play()
+		change_animation("attack")
 		ranged_attack()
+		
+func sound_process():
+	if $Sprite.animation == "move" and not $PitchAudioStreamPlayer.playing and $Sprite.frame == 0:
+		$PitchAudioStreamPlayer.play_pitched()
+		canPlayMoveSound = false

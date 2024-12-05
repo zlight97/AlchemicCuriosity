@@ -40,3 +40,8 @@ debug_color = Color(1, 0, 0, 0.419608)
 [node name="InvulnTimer" type="Timer" parent="."]
 
 [node name="PoisonTimer" type="Timer" parent="."]
+
+[node name="AnimationChangeTimer" type="Timer" parent="."]
+
+[node name="DirTimer" type="Timer" parent="."]
+wait_time = 0.1

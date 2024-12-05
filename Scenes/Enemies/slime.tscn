@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://vqgdox558gxf"]
+[gd_scene load_steps=8 format=3 uid="uid://vqgdox558gxf"]
 
 [ext_resource type="Script" path="res://Scenes/Enemies/slime.gd" id="1_vu2j6"]
 [ext_resource type="SpriteFrames" uid="uid://brwvjtvdldllg" path="res://assets/images/sprites/slime.tres" id="2_dajst"]
+[ext_resource type="AudioStream" uid="uid://0wjytu0d2wvc" path="res://assets/sounds/enemy/slime_move.mp3" id="3_g5xkh"]
+[ext_resource type="PackedScene" uid="uid://eym1rxfglttb" path="res://assets/templates/PitchAudioStreamPlayer.tscn" id="3_x7o1u"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_74wof"]
 radius = 36.0139
@@ -21,6 +23,9 @@ script = ExtResource("1_vu2j6")
 sprite_frames = ExtResource("2_dajst")
 animation = &"move"
 frame_progress = 0.00457288
+
+[node name="PitchAudioStreamPlayer" parent="." instance=ExtResource("3_x7o1u")]
+stream = ExtResource("3_g5xkh")
 
 [node name="Collisions" type="CollisionShape2D" parent="."]
 position = Vector2(1, 12)
@@ -44,3 +49,8 @@ debug_color = Color(0.988235, 0, 0, 0.419608)
 [node name="InvulnTimer" type="Timer" parent="."]
 
 [node name="PoisonTimer" type="Timer" parent="."]
+
+[node name="AnimationChangeTimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="DirTimer" type="Timer" parent="."]

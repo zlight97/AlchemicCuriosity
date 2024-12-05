@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://eym1rxfglttb"]
+
+[ext_resource type="Script" path="res://assets/templates/pitch_audio_stream_player.gd" id="2_5qtob"]
+
+[node name="PitchAudioStreamPlayer" type="AudioStreamPlayer"]
+script = ExtResource("2_5qtob")

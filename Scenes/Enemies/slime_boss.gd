@@ -2,6 +2,7 @@ extends enemy
 
 
 func init():
+	$PitchAudioStreamPlayer.set_pitches(.90, 1.01, .05)
 	MAX_HP = 1000
 	current_hp = MAX_HP
 	MAX_DAMAGE = 15
@@ -15,8 +16,7 @@ func die():
 	velocity.x = 0
 	velocity.y = 0
 	alive = false
-	$Sprite.animation = "death"
-	$Sprite.play()
+	change_animation("death")
 	player.win()
 
 func damage(amount_hit):
@@ -30,8 +30,7 @@ func damage(amount_hit):
 				attackCooldown = 1.5
 			$InvulnTimer.wait_time = invulnTime
 			$InvulnTimer.start()
-			$Sprite.animation = "hurt"
-			$Sprite.play()
+			change_animation("hurt")
 		if current_hp <= 0:
 			die()
 
@@ -83,6 +82,10 @@ func attack():
 		canAttack = false
 		$AttackCD.wait_time = attackCooldown
 		$AttackCD.start()
-		$Sprite.animation = "attack"
-		$Sprite.play()
+		change_animation("attack")
 		ranged_attack()
+		
+func sound_process():
+	if $Sprite.animation == "move" and not $PitchAudioStreamPlayer.playing and $Sprite.frame == 0:
+		$PitchAudioStreamPlayer.play_pitched()
+		canPlayMoveSound = false

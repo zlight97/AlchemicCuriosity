@@ -20,10 +20,14 @@ var attacking = false
 var detected = false
 var facing = false
 var invuln = false
+var canSwapDir = true
 var invulnTime = .5
+var next_animation = "idle"
 #Attack timer variables
 var attackCooldown = 4.0
 var canAttack = true
+#Sound Vars
+var canPlayMoveSound = true
 
 var poison_counter = 10
 var poison_dmg = 0
@@ -41,6 +45,30 @@ func _ready():
 	$InvulnTimer.timeout.connect(invuln_timer)
 	$Sprite.animation_looped.connect(sprite_animation_done)
 	$PoisonTimer.timeout.connect(poison_tick)
+	$AnimationChangeTimer.timeout.connect(update_animation)
+	$DirTimer.timeout.connect(allow_swap_dir)
+
+func allow_swap_dir():
+	canSwapDir = true
+
+func update_animation():
+	$Sprite.animation = next_animation
+	$Sprite.play()
+
+func change_animation(animation_name: String):
+	print(next_animation)
+	if $Sprite.animation == animation_name or animation_name == next_animation:
+		return
+	if animation_name == "hurt":
+		$Sprite.animation = "hurt"
+		$Sprite.play()
+		return
+	print(animation_name)
+		
+	if $AnimationChangeTimer.time_left > 0 and animation_name!=next_animation:
+		$AnimationChangeTimer.stop()
+	next_animation = animation_name
+	$AnimationChangeTimer.start()
 
 func damage(amount_hit):
 	if alive:
@@ -49,8 +77,7 @@ func damage(amount_hit):
 			invuln = true
 			$InvulnTimer.wait_time = invulnTime
 			$InvulnTimer.start()
-			$Sprite.animation = "hurt"
-			$Sprite.play()
+			change_animation("hurt")
 		if current_hp <= 0:
 			die()
 #Dunno how this will work yet, but for applying statuses
@@ -90,23 +117,26 @@ func ai_process():
 		velocity.x = 0
 		velocity.y = 0
 func swap_dir():
-	if facing != get_sprite_dir():
+	if canSwapDir and facing != get_sprite_dir():
 		facing = !facing
 		scale.x = -1
+		canSwapDir = false
+		$DirTimer.start()
 	
 func get_sprite_dir():
 	return velocity.x > 0
+	
+func sound_process():
+	pass
 
 func _physics_process(_delta):
 	ai_process()
+	sound_process()
 	if !is_busy():
 		if velocity.x == 0 and velocity.y == 0:
-			if $Sprite.animation != "idle":
-				$Sprite.animation = "idle"
-				$Sprite.play()
-		elif $Sprite.animation != "move":
-			$Sprite.animation = "move"
-			$Sprite.play()
+			change_animation("idle")
+		else:
+			change_animation("move")
 	if velocity.x != 0:
 		swap_dir()
 			
@@ -120,16 +150,14 @@ func attack():
 		canAttack = false
 		$AttackCD.wait_time = attackCooldown
 		$AttackCD.start()
-		$Sprite.animation = "attack"
-		$Sprite.play()
+		change_animation("attack")
 		player.damage(getDamage())
 
 func die():
 	velocity.x = 0
 	velocity.y = 0
 	alive = false
-	$Sprite.animation = "death"
-	$Sprite.play()
+	change_animation("death")
 
 func drop():
 	var maxWeight = DROP_TABLE[-2]
@@ -148,6 +176,8 @@ func sprite_animation_done():
 		drop()
 		hide()
 		queue_free()
+	if $Sprite.animation == "move":
+		canPlayMoveSound = true
 
 func entered_attack(body):
 	if body.name == "Player":
