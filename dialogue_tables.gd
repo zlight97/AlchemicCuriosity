@@ -10,7 +10,6 @@ const teacher = [
 	["Go out and find some herbs so we can get brewing!\nSometimes monsters will drops things you need too!","When you leave and enter zones herbs spring right back up!","The devloper said having them not do that took too much time..."]
 ]
 const teacher_random = [
-	["Whats that? You cant hear?","What if the devloper was deaf, and wanted you to feel how they feel?","They aren't but like -- that was a rude assumption"],
 	["Go out and find some herbs so we can get brewing!\nSometimes monsters will drops things you need too!","When you leave and enter zones herbs spring right back up!","The devloper said having them not do that took too much time..."]
 ]
 const teacher_tempA = [

@@ -29,7 +29,7 @@ frame_progress = 0.00457288
 position = Vector2(2, 33)
 shape = SubResource("CircleShape2D_74wof")
 
-[node name="PitchAudioStreamPlayer" parent="." instance=ExtResource("3_r3gib")]
+[node name="AttackSound" parent="." instance=ExtResource("3_r3gib")]
 stream = ExtResource("4_jnesh")
 
 [node name="Detection" type="Area2D" parent="."]
@@ -46,12 +46,16 @@ shape = SubResource("CircleShape2D_mrswo")
 debug_color = Color(0.988235, 0, 0, 0.419608)
 
 [node name="AttackCD" type="Timer" parent="."]
+one_shot = true
 
 [node name="InvulnTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="PoisonTimer" type="Timer" parent="."]
 
 [node name="AnimationChangeTimer" type="Timer" parent="."]
 wait_time = 0.1
+one_shot = true
 
 [node name="DirTimer" type="Timer" parent="."]
+one_shot = true

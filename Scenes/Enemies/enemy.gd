@@ -56,14 +56,12 @@ func update_animation():
 	$Sprite.play()
 
 func change_animation(animation_name: String):
-	print(next_animation)
-	if $Sprite.animation == animation_name or animation_name == next_animation:
+	if $Sprite.animation == animation_name or animation_name == next_animation or ($Sprite.animation == "hurt" and invuln):
 		return
 	if animation_name == "hurt":
 		$Sprite.animation = "hurt"
 		$Sprite.play()
 		return
-	print(animation_name)
 		
 	if $AnimationChangeTimer.time_left > 0 and animation_name!=next_animation:
 		$AnimationChangeTimer.stop()
