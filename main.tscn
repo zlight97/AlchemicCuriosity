@@ -10,6 +10,7 @@
 script = ExtResource("1_f4c5a")
 
 [node name="Player" parent="." instance=ExtResource("4_p80hi")]
+z_as_relative = false
 
 [node name="PotionManager" type="Node2D" parent="."]
 script = ExtResource("5_rhn3f")

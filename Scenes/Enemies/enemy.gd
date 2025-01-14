@@ -21,6 +21,7 @@ var detected = false
 var facing = false
 var invuln = false
 var canSwapDir = true
+var can_update_animation = true
 var invulnTime = .5
 var next_animation = "idle"
 #Attack timer variables
@@ -50,22 +51,26 @@ func _ready():
 
 func allow_swap_dir():
 	canSwapDir = true
+	$DirTimer.stop()
 
 func update_animation():
-	$Sprite.animation = next_animation
-	$Sprite.play()
+	if $Sprite.animation != "death":
+		can_update_animation = true
+		#$Sprite.animation = next_animation
+		#$Sprite.play()
 
 func change_animation(animation_name: String):
-	if $Sprite.animation == animation_name or animation_name == next_animation or ($Sprite.animation == "hurt" and invuln):
+	if $Sprite.animation == animation_name or animation_name == next_animation or (alive and $Sprite.animation == "hurt" and invuln):
 		return
 	if animation_name == "hurt":
 		$Sprite.animation = "hurt"
 		$Sprite.play()
 		return
-		
-	if $AnimationChangeTimer.time_left > 0 and animation_name!=next_animation:
-		$AnimationChangeTimer.stop()
-	next_animation = animation_name
+	
+	if can_update_animation:
+		$Sprite.animation = animation_name
+		$Sprite.play()
+		can_update_animation = false
 	$AnimationChangeTimer.start()
 
 func damage(amount_hit):
@@ -115,10 +120,11 @@ func ai_process():
 		velocity.x = 0
 		velocity.y = 0
 func swap_dir():
-	if canSwapDir and facing != get_sprite_dir():
+	if canSwapDir and facing != get_sprite_dir() and $DirTimer.time_left == 0:
 		facing = !facing
 		scale.x = -1
 		canSwapDir = false
+		$DirTimer.wait_time = 2.
 		$DirTimer.start()
 	
 func get_sprite_dir():

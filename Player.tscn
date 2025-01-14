@@ -124,26 +124,28 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_46afe"]
-size = Vector2(55, 58.7794)
+size = Vector2(55, 25)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ws0aj"]
 radius = 57.8705
 
 [node name="Player" type="CharacterBody2D"]
-z_index = 1
+y_sort_enabled = true
 slide_on_ceiling = false
 platform_on_leave = 2
 platform_floor_layers = 4294901760
 script = ExtResource("1_k11tk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
 position = Vector2(4.76837e-07, 6)
 scale = Vector2(0.16474, 0.16474)
 sprite_frames = SubResource("SpriteFrames_x1r07")
 animation = &"move1"
+offset = Vector2(0, -200)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 12.3897)
+position = Vector2(0.5, -4.5)
 shape = SubResource("RectangleShape2D_46afe")
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
@@ -161,7 +163,7 @@ one_shot = true
 [node name="InteractBox" type="Area2D" parent="."]
 
 [node name="InteractArea" type="CollisionShape2D" parent="InteractBox"]
-position = Vector2(-1, 7)
+position = Vector2(0, -21)
 shape = SubResource("CircleShape2D_ws0aj")
 
 [node name="InvulnTimer" type="Timer" parent="."]
@@ -169,7 +171,7 @@ one_shot = true
 
 [node name="useDialogue" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(0, 64)
+position = Vector2(0, 31)
 scale = Vector2(0.051282, 0.051282)
 texture = ExtResource("3_dmrgp")
 

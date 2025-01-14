@@ -25,22 +25,28 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_fcj2w"]
 radius = 167.012
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_j2moa"]
-radius = 85.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yrogs"]
+radius = 27.0
+height = 134.0
 
 [node name="CraftingStation" type="Area2D"]
+y_sort_enabled = true
 script = ExtResource("1_joykp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_223w0")
 autoplay = "default"
 frame_progress = 0.977853
+offset = Vector2(0, -75)
 
 [node name="InteractZone" type="CollisionShape2D" parent="."]
+position = Vector2(0, -66)
 shape = SubResource("CircleShape2D_fcj2w")
 
 [node name="Collisions" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions"]
-position = Vector2(0, 11)
-shape = SubResource("CircleShape2D_j2moa")
+position = Vector2(3, -32)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_yrogs")

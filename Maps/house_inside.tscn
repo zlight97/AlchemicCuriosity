@@ -9,6 +9,7 @@
 size = Vector2(278, 194)
 
 [node name="HouseInside" type="TileMap"]
+y_sort_enabled = true
 tile_set = ExtResource("1_ykk40")
 format = 2
 layer_0/name = "floor"
@@ -16,7 +17,6 @@ layer_0/tile_data = PackedInt32Array(393219, 65536, 4, 393220, 131072, 4, 393222
 layer_1/name = "mid"
 layer_1/tile_data = PackedInt32Array(393219, 1, 0, 458755, 1, 1, 393220, 65537, 0, 458756, 65537, 1, 393221, 262145, 0, 458757, 262145, 1, 393222, 327681, 0, 458758, 327681, 1, 65539, 1, 0, 65540, 65537, 0, 65541, 262145, 0, 65542, 327681, 0, 327683, 1, 5, 327684, 65537, 5, 327685, 262145, 5, 327686, 327681, 5, 131078, 327681, 1, 196614, 327681, 2, 262150, 327681, 3, 131075, 1, 1, 196611, 1, 2, 262147, 1, 3, 131076, 65537, 1, 196612, 65537, 2, 262148, 65537, 4, 262149, 262145, 4, 131077, 262145, 1, 196613, 262145, 2)
 layer_2/name = "top"
-layer_2/tile_data = PackedInt32Array()
 script = ExtResource("1_nltg6")
 
 [node name="Area2D0" type="Area2D" parent="."]
@@ -39,6 +39,7 @@ position = Vector2(200, -200)
 polygon = PackedVector2Array(0, 300, -200, 300, -200, -100, 1100, -100, 1100, 700, 700, 700, 700, 1000, 700, 1300, -100, 1300, -100, 300, 0, 300, 0, 1000, 200, 1000, 200, 1200, 400, 1200, 400, 1000, 600, 1000, 600, 600, 1000, 600, 1000, 300)
 
 [node name="Teacher" parent="." instance=ExtResource("3_367rd")]
+y_sort_enabled = true
 position = Vector2(400, 300)
 
 [node name="CraftingStation" parent="." instance=ExtResource("4_w43oy")]

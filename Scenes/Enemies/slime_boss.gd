@@ -2,8 +2,7 @@ extends enemy
 
 
 func init():
-	$AttackSound.set_timeout(1)
-	$AttackSound.set_pitches(.90, 1.01, .05)
+	$AttackSound.init(.90, 1.01, .05, 1)
 	MAX_HP = 1000
 	current_hp = MAX_HP
 	MAX_DAMAGE = 15

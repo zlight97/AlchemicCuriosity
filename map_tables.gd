@@ -10,7 +10,7 @@ const HouseOutside = [
 ]
 
 const HouseInside = [
-	
+	#["res://Maps/boss.tscn", 0]
 	["res://Maps/house_outside.tscn",1]
 ]
 

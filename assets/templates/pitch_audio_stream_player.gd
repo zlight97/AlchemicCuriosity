@@ -10,6 +10,11 @@ var can_play = false
 #func _ready() -> void:
 	#$Timer.timeout.connect(_on_timer_timeout)
 
+func init(low=.8,high=1.2,diff=.1,timeout=1.0) -> void:
+	set_pitches(low,high,diff)
+	set_timeout(1.0)
+	
+
 func set_timeout(time):
 	using_timer = true
 	can_play = true

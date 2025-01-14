@@ -1,7 +1,7 @@
 extends enemy 
 
 func init():
-	$PitchAudioStreamPlayer.set_pitches(.95, 1.1, .05)
+	$PitchAudioStreamPlayer.init(.95, 1.1, .05, 1)
 	MAX_HP = 150
 	current_hp = MAX_HP
 	MAX_DAMAGE = 12
